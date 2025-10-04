@@ -2,4 +2,4 @@
 
 Welcome,
 
-This is a simplified implementation of the card game Hero Realms, developed as part of a university C++ programming course. 
+This is an implementation of the card game Hero Realms, developed as part of a university C++ programming course. 
