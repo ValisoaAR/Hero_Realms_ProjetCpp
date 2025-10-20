@@ -1,0 +1,10 @@
+^C:\USERS\ANASB\ONEDRIVE\BUREAU\ANAS\INFORMATIQUE\ET4\JEU_C++\HERO_REALMS_PROJETCPP\BUILD\CMAKEFILES\9D1FF59ABFFCD38507782EB2818C3E42\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/anasb/OneDrive/Bureau/anas/informatique/ET4/Jeu_C++/Hero_Realms_ProjetCpp -BC:/Users/anasb/OneDrive/Bureau/anas/informatique/ET4/Jeu_C++/Hero_Realms_ProjetCpp/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/anasb/OneDrive/Bureau/anas/informatique/ET4/Jeu_C++/Hero_Realms_ProjetCpp/build/HeroRealms.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

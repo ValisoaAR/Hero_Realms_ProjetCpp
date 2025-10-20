@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Cartes\Action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Cartes\Carte.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Cartes\Champion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Cartes\Objet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Core\Joueur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Core\Partie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Systeme\Capacite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Systeme\Effet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Systeme\Faction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Systeme\Ressources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Utils\SimpleRng.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Zones\Marche.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Zones\TablePartie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\src\Game\Zones\ZoneDeCarte.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\anasb\OneDrive\Bureau\anas\informatique\ET4\Jeu_C++\Hero_Realms_ProjetCpp\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{DAA7C13E-5EBB-3B3C-9686-671A18F99D77}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
