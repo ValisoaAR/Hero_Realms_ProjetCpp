@@ -1,4 +1,4 @@
-#include "Game/Systeme/Faction.hpp"
+#include "../../../include/Game/Systeme/Faction.hpp"
 
 namespace Game::Systeme {
 

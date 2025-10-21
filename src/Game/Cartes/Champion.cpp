@@ -1,4 +1,4 @@
-#include "Game/Cartes/Champion.hpp"
+#include "../../../include/Game/Cartes/Champion.hpp"
 
 namespace Game::Cartes {
 

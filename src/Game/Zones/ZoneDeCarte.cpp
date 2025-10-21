@@ -1,5 +1,5 @@
-#include "Game/Zones/ZoneDeCarte.hpp"
-#include "Game/Utils/SimpleRng.h"
+#include "../../../include/Game/Zones/ZoneDeCarte.hpp"
+#include "../../../include/Game/Utils/SimpleRng.h"
 #include <algorithm>
 
 namespace Game::Zones {

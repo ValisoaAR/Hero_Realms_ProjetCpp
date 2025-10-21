@@ -1,4 +1,4 @@
-#include "Game/Zones/TablePartie.hpp"
+#include "../../../include/Game/Zones/TablePartie.hpp"
 
 namespace Game::Zones {
 

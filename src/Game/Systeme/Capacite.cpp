@@ -1,4 +1,4 @@
-#include "Game/Systeme/Capacite.hpp"
+#include "../../../include/Game/Systeme/Capacite.hpp"
 
 namespace Game::Systeme {
 

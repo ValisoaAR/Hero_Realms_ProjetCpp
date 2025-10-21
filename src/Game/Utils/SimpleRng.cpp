@@ -1,4 +1,4 @@
-#include "Game/Utils/SimpleRng.h"
+#include "../../../include/Game/Utils/SimpleRng.h"
 
 namespace Game::Utils {
 

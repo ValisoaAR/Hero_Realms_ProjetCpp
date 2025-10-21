@@ -1,12 +1,24 @@
-#include "Carte.hpp"
+// Includes
+#include "../../../include/Game/Cartes/Carte.hpp"
+#include "../../../include/Game/Cartes/CarteData.hpp"
+#include "../../../include/Game/Cartes/Champion.hpp"
+#include "../../../include/Game/Cartes/Action.hpp"
+#include "../../../include/Game/Cartes/Objet.hpp"
+#include "../../../include/Game/Systeme/Faction.hpp"
 #include <vector>
 #include <memory>
+
+using Game::Cartes::Carte;
+using Game::Cartes::Champion;
+using Game::Cartes::Action;
+using Game::Cartes::Objet;
+using Game::Systeme::Faction;
 
 namespace HeroRealms {
 
 // Fonction pour créer toutes les cartes du Base Set
-std::vector<std::shared_ptr<Carte>> CreerCartesBaseSet() {
-    std::vector<std::shared_ptr<Carte>> cartes;
+std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
+    std::vector<std::shared_ptr<Game::Cartes::Carte>> cartes;
     
     // ==================== FACTION IMPÉRIALE ====================
     
@@ -596,8 +608,8 @@ std::vector<std::shared_ptr<Carte>> CreerCartesBaseSet() {
 }
 
 // Fonction pour créer les Fire Gems (16 exemplaires)
-std::vector<std::shared_ptr<Carte>> CreerFireGems() {
-    std::vector<std::shared_ptr<Carte>> gems;
+std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerFireGems() {
+    std::vector<std::shared_ptr<Game::Cartes::Carte>> gems;
     for(int i = 0; i < 16; i++) {
         auto gem = std::make_shared<Objet>(
             "Fire Gem",
@@ -611,8 +623,8 @@ std::vector<std::shared_ptr<Carte>> CreerFireGems() {
 }
 
 // Fonction pour créer le deck de départ d'un joueur
-std::vector<std::shared_ptr<Carte>> CreerDeckDepart() {
-    std::vector<std::shared_ptr<Carte>> deck;
+std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerDeckDepart() {
+    std::vector<std::shared_ptr<Game::Cartes::Carte>> deck;
     
     // 7 Gold
     for(int i = 0; i < 7; i++) {

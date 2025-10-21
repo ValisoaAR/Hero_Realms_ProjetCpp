@@ -1,176 +1,160 @@
 
 
-#include <iostream>
 
-#include "Game/Core/Partie.hpp"
-#include "Game/Core/Joueur.hpp"
+#include <iostream>
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <memory>
+#include "Game/Core/Joueur.hpp"
+#include "Game/Core/Partie.hpp"
+#include "Game/Cartes/CarteData.hpp"
 
-struct CarteSimple {
-    std::string nom;
-    int cout;
-    std::string type; // "or", "dague", "marche"
-    int effet; // or ou combat
+using namespace HeroRealms;
+
+
+#include "Game/Cartes/Carte.hpp"
+using Game::Cartes::Carte;
+struct JoueurConsole {
+    int id;
+    int pv = 50;
+    std::vector<std::shared_ptr<Carte>> deck;
+    std::vector<std::shared_ptr<Carte>> main;
+    std::vector<std::shared_ptr<Carte>> defausse;
+    int orTour = 0;
+    int combatTour = 0;
 };
 
 int main() {
-    using namespace Game::Core;
     std::cout << "=== Hero Realms - Démarrage de la partie ===" << std::endl;
 
-    // Création de deux joueurs
-    Joueur joueur1(1);
-    Joueur joueur2(2);
+    // Initialisation des joueurs
+    JoueurConsole joueur1{1, 50, CreerDeckDepart()};
+    JoueurConsole joueur2{2, 50, CreerDeckDepart()};
+    std::random_shuffle(joueur1.deck.begin(), joueur1.deck.end());
+    std::random_shuffle(joueur2.deck.begin(), joueur2.deck.end());
 
-    // Decks de départ
-    std::vector<CarteSimple> deck_depart;
-    for (int i = 0; i < 8; ++i) deck_depart.push_back({"Or", 0, "or", 1});
-    deck_depart.push_back({"Epée courte", 1, "arme", 2});
-    deck_depart.push_back({"Dague", 1, "dague", 1});
-
-    // Decks des joueurs
-    std::vector<CarteSimple> deck1 = deck_depart;
-    std::vector<CarteSimple> deck2 = deck_depart;
-    std::random_shuffle(deck1.begin(), deck1.end());
-    std::random_shuffle(deck2.begin(), deck2.end());
-
-    // Or de départ
-    joueur1.modifierOr(7);
-    joueur2.modifierOr(7);
-
-    // Main et défausse
-    std::vector<CarteSimple> main1, main2, defausse1, defausse2;
-
-    // Marché
-    std::vector<CarteSimple> marche = {
-        {"Epée longue", 3, "arme", 3},
-        {"Arc", 2, "arme", 2},
-        {"Bouclier", 2, "objet", 0},
-        {"Potion", 1, "objet", 0}
-    };
-
-    Partie partie;
-    partie.ajouterJoueur(joueur1);
-    partie.ajouterJoueur(joueur2);
-    partie.demarrer();
-
-    std::cout << "La partie a démarré avec succès !" << std::endl;
+    // Initialisation du marché
+    std::vector<std::shared_ptr<Carte>> piocheMarche = CreerCartesBaseSet();
+    auto fireGems = CreerFireGems();
+    piocheMarche.insert(piocheMarche.end(), fireGems.begin(), fireGems.end());
+    std::random_shuffle(piocheMarche.begin(), piocheMarche.end());
+    std::vector<std::shared_ptr<Carte>> marche;
+    for (int i = 0; i < 5 && !piocheMarche.empty(); ++i) {
+        marche.push_back(piocheMarche.back());
+        piocheMarche.pop_back();
+    }
 
     int tour = 1;
     bool partie_finie = false;
     while (!partie_finie) {
         std::cout << "\n=== Tour " << tour << " ===" << std::endl;
         for (int idx = 0; idx < 2; ++idx) {
-            Joueur& joueur = partie.getJoueurs()[idx];
-            std::vector<CarteSimple>& deck = (idx == 0) ? deck1 : deck2;
-            std::vector<CarteSimple>& main = (idx == 0) ? main1 : main2;
-            std::vector<CarteSimple>& defausse = (idx == 0) ? defausse1 : defausse2;
+            JoueurConsole& joueur = (idx == 0) ? joueur1 : joueur2;
+            JoueurConsole& adv = (idx == 0) ? joueur2 : joueur1;
 
             // Pioche 5 cartes
-            while (main.size() < 5 && !deck.empty()) {
-                main.push_back(deck.back());
-                deck.pop_back();
+            while (joueur.main.size() < 5 && !joueur.deck.empty()) {
+                joueur.main.push_back(joueur.deck.back());
+                joueur.deck.pop_back();
             }
-            if (main.size() < 5 && !defausse.empty()) {
+            if (joueur.main.size() < 5 && !joueur.defausse.empty()) {
                 std::cout << "Deck vide, mélange la défausse." << std::endl;
-                deck = defausse;
-                defausse.clear();
-                std::random_shuffle(deck.begin(), deck.end());
-                while (main.size() < 5 && !deck.empty()) {
-                    main.push_back(deck.back());
-                    deck.pop_back();
+                joueur.deck = joueur.defausse;
+                joueur.defausse.clear();
+                std::random_shuffle(joueur.deck.begin(), joueur.deck.end());
+                while (joueur.main.size() < 5 && !joueur.deck.empty()) {
+                    joueur.main.push_back(joueur.deck.back());
+                    joueur.deck.pop_back();
                 }
             }
 
-            std::cout << "\nJoueur " << joueur.getId() << " : " << joueur.getPv() << " PV, " << joueur.getOr() << " or, " << joueur.getCombat() << " combat" << std::endl;
+            joueur.orTour = 0;
+            joueur.combatTour = 0;
+
+            std::cout << "\nJoueur " << joueur.id << " : " << joueur.pv << " PV" << std::endl;
             std::cout << "Main : ";
-            for (size_t i = 0; i < main.size(); ++i) std::cout << main[i].nom << (i < main.size()-1 ? ", " : "");
+            for (size_t i = 0; i < joueur.main.size(); ++i) std::cout << i+1 << "." << joueur.main[i]->getNom() << (i < joueur.main.size()-1 ? ", " : "");
             std::cout << std::endl;
 
             std::cout << "Marché : ";
-            for (size_t i = 0; i < marche.size(); ++i) std::cout << i+1 << "." << marche[i].nom << "(" << marche[i].cout << " or) ";
+            for (size_t i = 0; i < marche.size(); ++i) std::cout << i+1 << "." << marche[i]->getNom() << "(" << marche[i]->getCout() << " or) ";
             std::cout << std::endl;
 
             bool fin_tour = false;
             while (!fin_tour && !partie_finie) {
-                std::cout << "Choisissez une action :" << std::endl;
-                std::cout << "  1. Attaquer l'autre joueur" << std::endl;
-                std::cout << "  2. Jouer une carte de la main" << std::endl;
-                std::cout << "  3. Acheter une carte du marché" << std::endl;
-                std::cout << "  4. Fin du tour" << std::endl;
-                int choix;
-                std::cin >> choix;
+                std::cout << "Actions : 1.Jouer carte 2.Acheter 3.Attaquer 4.Fin du tour" << std::endl;
+                int choix; std::cin >> choix;
                 switch (choix) {
                     case 1: {
-                        int cible = (joueur.getId() == 1) ? 2 : 1;
-                        for (auto& adv : partie.getJoueurs()) {
-                            if (adv.getId() == cible) {
-                                adv.modifierPv(-5);
-                                std::cout << "  -> Vous attaquez Joueur " << cible << " (-5 PV)" << std::endl;
-                                if (adv.getPv() <= 0) partie_finie = true;
-                            }
-                        }
+                        std::cout << "Quelle carte jouer ? (1-" << joueur.main.size() << ")" << std::endl;
+                        int carte_idx; std::cin >> carte_idx;
+                        if (carte_idx >= 1 && carte_idx <= (int)joueur.main.size()) {
+                            auto carte = joueur.main[carte_idx-1];
+                            // Effet simple : or/combat
+                            if (carte->getNom() == "Gold") joueur.orTour += 1;
+                            else if (carte->getNom() == "Ruby") joueur.orTour += 2;
+                            else if (carte->getNom() == "Dagger") joueur.combatTour += 1;
+                            else if (carte->getNom() == "Shortsword") joueur.combatTour += 2;
+                            // ... autres effets à enrichir ici
+                            std::cout << "Vous jouez " << carte->getNom() << std::endl;
+                            joueur.defausse.push_back(carte);
+                            joueur.main.erase(joueur.main.begin() + (carte_idx-1));
+                        } else std::cout << "Choix invalide." << std::endl;
                         break;
                     }
                     case 2: {
-                        std::cout << "Quelle carte voulez-vous jouer ? (1-" << main.size() << ")" << std::endl;
-                        int carte_idx; std::cin >> carte_idx;
-                        if (carte_idx >= 1 && carte_idx <= (int)main.size()) {
-                            CarteSimple carte = main[carte_idx-1];
-                            if (carte.type == "or") {
-                                joueur.modifierOr(carte.effet);
-                                std::cout << "  -> Vous gagnez " << carte.effet << " or" << std::endl;
-                            } else if (carte.type == "dague" || carte.type == "arme") {
-                                joueur.modifierCombat(carte.effet);
-                                std::cout << "  -> Vous gagnez " << carte.effet << " combat" << std::endl;
-                            } else {
-                                std::cout << "  -> Effet de la carte non géré." << std::endl;
-                            }
-                            defausse.push_back(carte);
-                            main.erase(main.begin() + (carte_idx-1));
-                        } else {
-                            std::cout << "  -> Choix invalide." << std::endl;
-                        }
-                        break;
-                    }
-                    case 3: {
                         std::cout << "Quelle carte acheter ? (1-" << marche.size() << ")" << std::endl;
                         int achat_idx; std::cin >> achat_idx;
                         if (achat_idx >= 1 && achat_idx <= (int)marche.size()) {
-                            CarteSimple carte = marche[achat_idx-1];
-                            if (joueur.getOr() >= carte.cout) {
-                                joueur.modifierOr(-carte.cout);
-                                deck.push_back(carte);
-                                std::cout << "  -> Vous achetez " << carte.nom << " et l'ajoutez à votre deck." << std::endl;
+                            auto carte = marche[achat_idx-1];
+                            if (joueur.orTour >= carte->getCout()) {
+                                joueur.orTour -= carte->getCout();
+                                joueur.deck.push_back(carte);
+                                std::cout << "Vous achetez " << carte->getNom() << " et l'ajoutez à votre deck." << std::endl;
                                 marche.erase(marche.begin() + (achat_idx-1));
-                            } else {
-                                std::cout << "  -> Pas assez d'or." << std::endl;
-                            }
-                        } else {
-                            std::cout << "  -> Choix invalide." << std::endl;
-                        }
+                                if (!piocheMarche.empty()) {
+                                    marche.push_back(piocheMarche.back());
+                                    piocheMarche.pop_back();
+                                }
+                            } else std::cout << "Pas assez d'or." << std::endl;
+                        } else std::cout << "Choix invalide." << std::endl;
+                        break;
+                    }
+                    case 3: {
+                        // Attaque : priorité aux gardes
+                        int totalGarde = 0;
+                        // ... ici, il faudrait parcourir les champions adverses pour voir les gardes
+                        // Version simple : attaque directe
+                        if (joueur.combatTour > 0) {
+                            adv.pv -= joueur.combatTour;
+                            std::cout << "Vous attaquez Joueur " << adv.id << " (-" << joueur.combatTour << " PV)" << std::endl;
+                            joueur.combatTour = 0;
+                            if (adv.pv <= 0) partie_finie = true;
+                        } else std::cout << "Pas de points de combat." << std::endl;
                         break;
                     }
                     case 4:
                         fin_tour = true;
-                        std::cout << "  -> Fin du tour pour ce joueur" << std::endl;
+                        std::cout << "Fin du tour." << std::endl;
                         break;
                     default:
-                        std::cout << "  -> Action inconnue, tour passé." << std::endl;
+                        std::cout << "Action inconnue." << std::endl;
                         break;
                 }
-                std::cout << "Etat : " << joueur.getPv() << " PV, " << joueur.getOr() << " or, " << joueur.getCombat() << " combat" << std::endl;
-                if (joueur.getPv() <= 0) {
-                    std::cout << "\nJoueur " << joueur.getId() << " est KO !" << std::endl;
+                std::cout << "Etat : PV=" << joueur.pv << " | Or tour=" << joueur.orTour << " | Combat tour=" << joueur.combatTour << std::endl;
+                if (joueur.pv <= 0) {
+                    std::cout << "Joueur " << joueur.id << " est KO !" << std::endl;
+                    partie_finie = true;
+                }
+                if (adv.pv <= 0) {
+                    std::cout << "Joueur " << adv.id << " est KO !" << std::endl;
                     partie_finie = true;
                 }
             }
             // Fin du tour : défausser la main
-            defausse.insert(defausse.end(), main.begin(), main.end());
-            main.clear();
-            // Réinitialiser les ressources combat
-            joueur.modifierCombat(-joueur.getCombat());
+            joueur.defausse.insert(joueur.defausse.end(), joueur.main.begin(), joueur.main.end());
+            joueur.main.clear();
         }
         tour++;
     }

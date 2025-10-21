@@ -1,4 +1,4 @@
-#include "Game/Core/Joueur.hpp"
+#include "../../../include/Game/Core/Joueur.hpp"
 
 namespace Game::Core {
 

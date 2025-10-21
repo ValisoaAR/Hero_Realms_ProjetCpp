@@ -1,4 +1,4 @@
-#include "Game/Systeme/Effet.hpp"
+#include "../../../include/Game/Systeme/Effet.hpp"
 
 namespace Game::Systeme {
 

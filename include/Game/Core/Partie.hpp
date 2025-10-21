@@ -2,7 +2,7 @@
 #include <vector>
 #include "Phase.hpp"
 #include "Joueur.hpp"
-#include "CarteData.hpp"
+#include "../Cartes/CarteData.hpp"
 
 namespace Game::Core {
     class Partie {
