@@ -2,6 +2,10 @@
 
 namespace Game::Core {
 
+void Partie::ajouterJoueur(const Joueur& joueur) {
+    joueurs.push_back(joueur);
+}
+
 Partie::Partie() : phaseActuelle(Phase::DEBUT_TOUR) {}
 
 void Partie::demarrer() {
