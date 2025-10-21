@@ -82,9 +82,9 @@ int main() {
     std::shuffle(joueur1.deck.begin(), joueur1.deck.end(), rng);
     std::shuffle(joueur2.deck.begin(), joueur2.deck.end(), rng);
     
-    // Distribution initiale de 3 cartes (Hero Realms regle: 3 cartes au debut)
-    piocherCartes(joueur1, 3, rng);
-    piocherCartes(joueur2, 3, rng);
+    std::cout << "[Init] Decks melanges pour les 2 joueurs" << std::endl;
+    std::cout << "[Init] Chaque joueur commence avec son deck de 10 cartes" << std::endl;
+    // Note: Les joueurs piocheront 5 cartes au debut de leur premier tour
 
     // Initialisation du marche avec toutes les cartes du Base Set
     std::cout << "\n[Init] Creation du marche..." << std::endl;
@@ -119,9 +119,13 @@ int main() {
 
             std::cout << "\n--- Tour du Joueur " << joueur.id << " ---" << std::endl;
             
-            // Debut du tour : pioche jusqu'a 5 cartes
+            // Debut du tour : piocher jusqu'a avoir 5 cartes en main
             std::cout << "\n[Phase de pioche]" << std::endl;
-            piocherCartes(joueur, 5, rng);
+            int cartesAPiocher = 5 - joueur.main.size();
+            if (cartesAPiocher > 0) {
+                std::cout << "  Pioche de " << cartesAPiocher << " carte(s)..." << std::endl;
+                piocherCartes(joueur, cartesAPiocher, rng);
+            }
             
             // Reinitialiser les ressources du tour
             joueur.orTour = 0;
