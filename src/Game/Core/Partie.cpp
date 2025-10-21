@@ -12,7 +12,7 @@ void Partie::demarrer() {
     // Distribuer les decks de départ aux joueurs
     // 8 pièces de or (0 coût) et 2 dagues courtes (1 coût, +1 combat)
     for (auto& joueur : joueurs) {
-        std::vector<std::shared_ptr<Carte>> CreerDeckDepart();
+        joueur.deck = CreerDeckDepart();
     }
     
     // Mélanger les decks des joueurs

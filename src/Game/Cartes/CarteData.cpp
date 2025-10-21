@@ -22,15 +22,15 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     
     // ==================== FACTION IMPÉRIALE ====================
     
-    // Arkus, Imperial Dragon (8 gold, 6 defense, Guard)
+    // Arkus, IMPERIAL Dragon (8 gold, 6 defense, Guard)
     auto arkus = std::make_shared<Champion>(
-        "Arkus, Imperial Dragon",
+        "Arkus, IMPERIAL Dragon",
         Faction::IMPERIAL,
         8,
         6,
         true  // Guard
     );
-    // Capacités: {Expend}: {Gain 5 combat} Draw a card. {Imperial Ally}: {Gain 6 health}
+    // Capacités: {Expend}: {Gain 5 combat} Draw a card. {IMPERIAL Ally}: {Gain 6 health}
     cartes.push_back(arkus);
     
     // Close Ranks (3 gold)
@@ -39,7 +39,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
         Faction::IMPERIAL,
         3
     );
-    // Capacités: {Gain 5 combat} +{2 combat} for each champion you have in play. {Imperial Ally}: {Gain 6 health}
+    // Capacités: {Gain 5 combat} +{2 combat} for each champion you have in play. {IMPERIAL Ally}: {Gain 6 health}
     cartes.push_back(closeRanks);
     
     // Command (5 gold)
@@ -68,7 +68,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
         Faction::IMPERIAL,
         7
     );
-    // Capacités: {Gain 6 combat} {Gain 6 health} Draw a card. {Imperial Ally}: Prepare a champion.
+    // Capacités: {Gain 6 combat} {Gain 6 health} Draw a card. {IMPERIAL Ally}: Prepare a champion.
     cartes.push_back(domination);
     
     // Cristov, the Just (5 gold, 5 defense, Guard)
@@ -79,7 +79,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
         5,
         true
     );
-    // Capacités: {Expend}: {Gain 2 combat} {Gain 3 health} {Imperial Ally}: Draw a card.
+    // Capacités: {Expend}: {Gain 2 combat} {Gain 3 health} {IMPERIAL Ally}: Draw a card.
     cartes.push_back(cristov);
     
     // Kraka, High Priest (6 gold, 6 defense)
@@ -90,7 +90,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
         6,
         false
     );
-    // Capacités: {Expend}: {Gain 2 health} Draw a card. {Imperial Ally}: Gain {2 health} for each champion you have in play.
+    // Capacités: {Expend}: {Gain 2 health} Draw a card. {IMPERIAL Ally}: Gain {2 health} for each champion you have in play.
     cartes.push_back(kraka);
     
     // Man-at-Arms (3 gold, 4 defense, Guard) x2
@@ -123,7 +123,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
         Faction::IMPERIAL,
         4
     );
-    // Capacités: {Gain 5 combat} {Gain 5 health} {Imperial Ally}: Prepare a champion.
+    // Capacités: {Gain 5 combat} {Gain 5 health} {IMPERIAL Ally}: Prepare a champion.
     cartes.push_back(rallyTroops);
     
     // Recruit (2 gold) x3
@@ -133,7 +133,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
             Faction::IMPERIAL,
             2
         );
-        // Capacités: {Gain 2 gold} {Gain 3 health} +{1 health} for each champion you have in play. {Imperial Ally}: {Gain 1 gold}
+        // Capacités: {Gain 2 gold} {Gain 3 health} +{1 health} for each champion you have in play. {IMPERIAL Ally}: {Gain 1 gold}
         cartes.push_back(recruit);
     }
     
@@ -157,7 +157,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
             Faction::IMPERIAL,
             1
         );
-        // Capacités: {Gain 2 gold} {Imperial Ally}: {Gain 6 health}
+        // Capacités: {Gain 2 gold} {IMPERIAL Ally}: {Gain 6 health}
         cartes.push_back(taxation);
     }
     
@@ -167,15 +167,15 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
         Faction::IMPERIAL,
         6
     );
-    // Capacités: Draw two cards. {Imperial Ally}: {Gain 5 health} {Sacrifice}: {Gain 5 combat}
+    // Capacités: Draw two cards. {IMPERIAL Ally}: {Gain 5 health} {Sacrifice}: {Gain 5 combat}
     cartes.push_back(wordOfPower);
     
-    // ==================== FACTION GUILDE ====================
+    // ==================== FACTION GUILDEE ====================
     
     // Borg, Ogre Mercenary (6 gold, 6 defense, Guard)
     auto borg = std::make_shared<Champion>(
         "Borg, Ogre Mercenary",
-        Faction::GUILD,
+        Faction::GUILDE,
         6,
         6,
         true
@@ -187,35 +187,35 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     for(int i = 0; i < 3; i++) {
         auto bribe = std::make_shared<Action>(
             "Bribe",
-            Faction::GUILD,
+            Faction::GUILDE,
             3
         );
-        // Capacités: {Gain 3 gold} {Guild Ally}: Put the next action you acquire this turn on top of your deck.
+        // Capacités: {Gain 3 gold} {GuildE Ally}: Put the next action you acquire this turn on top of your deck.
         cartes.push_back(bribe);
     }
     
     // Death Threat (3 gold)
     auto deathThreat = std::make_shared<Action>(
         "Death Threat",
-        Faction::GUILD,
+        Faction::GUILDE,
         3
     );
-    // Capacités: {Gain 1 combat} Draw a card. {Guild Ally}: Stun target champion.
+    // Capacités: {Gain 1 combat} Draw a card. {GuildE Ally}: Stun target champion.
     cartes.push_back(deathThreat);
     
     // Deception (5 gold)
     auto deception = std::make_shared<Action>(
         "Deception",
-        Faction::GUILD,
+        Faction::GUILDE,
         5
     );
-    // Capacités: {Gain 2 gold} Draw a card. {Guild Ally}: Put the next card you acquire this turn into your hand.
+    // Capacités: {Gain 2 gold} Draw a card. {GuildE Ally}: Put the next card you acquire this turn into your hand.
     cartes.push_back(deception);
     
     // Fire Bomb (8 gold)
     auto fireBomb = std::make_shared<Action>(
         "Fire Bomb",
-        Faction::GUILD,
+        Faction::GUILDE,
         8
     );
     // Capacités: {Gain 8 combat} Stun target champion. Draw a card. {Sacrifice}: {Gain 5 combat}
@@ -224,60 +224,60 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     // Hit Job (4 gold)
     auto hitJob = std::make_shared<Action>(
         "Hit Job",
-        Faction::GUILD,
+        Faction::GUILDE,
         4
     );
-    // Capacités: {Gain 7 combat} {Guild Ally}: Stun target champion.
+    // Capacités: {Gain 7 combat} {GuildE Ally}: Stun target champion.
     cartes.push_back(hitJob);
     
     // Intimidation (2 gold) x2
     for(int i = 0; i < 2; i++) {
         auto intimidation = std::make_shared<Action>(
             "Intimidation",
-            Faction::GUILD,
+            Faction::GUILDE,
             2
         );
-        // Capacités: {Gain 5 combat} {Guild Ally}: {Gain 2 gold}
+        // Capacités: {Gain 5 combat} {GuildE Ally}: {Gain 2 gold}
         cartes.push_back(intimidation);
     }
     
-    // Myros, Guild Mage (5 gold, 3 defense, Guard)
+    // Myros, GuildE Mage (5 gold, 3 defense, Guard)
     auto myros = std::make_shared<Champion>(
-        "Myros, Guild Mage",
-        Faction::GUILD,
+        "Myros, GuildE Mage",
+        Faction::GUILDE,
         5,
         3,
         true
     );
-    // Capacités: {Expend}: {Gain 3 gold} {Guild Ally}: {Gain 4 combat}
+    // Capacités: {Expend}: {Gain 3 gold} {GuildE Ally}: {Gain 4 combat}
     cartes.push_back(myros);
     
     // Parov, the Enforcer (5 gold, 5 defense, Guard)
     auto parov = std::make_shared<Champion>(
         "Parov, the Enforcer",
-        Faction::GUILD,
+        Faction::GUILDE,
         5,
         5,
         true
     );
-    // Capacités: {Expend}: {Gain 3 combat} {Guild Ally}: Draw a card.
+    // Capacités: {Expend}: {Gain 3 combat} {GuildE Ally}: Draw a card.
     cartes.push_back(parov);
     
     // Profit (1 gold) x3
     for(int i = 0; i < 3; i++) {
         auto profit = std::make_shared<Action>(
             "Profit",
-            Faction::GUILD,
+            Faction::GUILDE,
             1
         );
-        // Capacités: {Gain 2 gold} {Guild Ally}: {Gain 4 combat}
+        // Capacités: {Gain 2 gold} {GuildE Ally}: {Gain 4 combat}
         cartes.push_back(profit);
     }
     
     // Rake, Master Assassin (7 gold, 7 defense)
     auto rake = std::make_shared<Champion>(
         "Rake, Master Assassin",
-        Faction::GUILD,
+        Faction::GUILDE,
         7,
         7,
         false
@@ -288,18 +288,18 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     // Rasmus, the Smuggler (4 gold, 5 defense)
     auto rasmus = std::make_shared<Champion>(
         "Rasmus, the Smuggler",
-        Faction::GUILD,
+        Faction::GUILDE,
         4,
         5,
         false
     );
-    // Capacités: {Expend}: {Gain 2 gold} {Guild Ally}: Put the next card you acquire this turn on top of your deck.
+    // Capacités: {Expend}: {Gain 2 gold} {GuildE Ally}: Put the next card you acquire this turn on top of your deck.
     cartes.push_back(rasmus);
     
     // Smash and Grab (6 gold)
     auto smashGrab = std::make_shared<Action>(
         "Smash and Grab",
-        Faction::GUILD,
+        Faction::GUILDE,
         6
     );
     // Capacités: {Gain 6 combat} You may put a card from your discard pile on top of your deck.
@@ -309,7 +309,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     for(int i = 0; i < 2; i++) {
         auto streetThug = std::make_shared<Champion>(
             "Street Thug",
-            Faction::GUILD,
+            Faction::GUILDE,
             3,
             4,
             false
@@ -466,44 +466,44 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     // Broelyn, Loreweaver (4 gold, 6 defense)
     auto broelyn = std::make_shared<Champion>(
         "Broelyn, Loreweaver",
-        Faction::WILD,
+        Faction::SAUVAGE,
         4,
         6,
         false
     );
-    // Capacités: {Expend}: {Gain 2 gold} {Wild Ally}: Target opponent discards a card.
+    // Capacités: {Expend}: {Gain 2 gold} {SAUVAGE Ally}: Target opponent discards a card.
     cartes.push_back(broelyn);
     
     // Cron, the Berserker (6 gold, 6 defense)
     auto cron = std::make_shared<Champion>(
         "Cron, the Berserker",
-        Faction::WILD,
+        Faction::SAUVAGE,
         6,
         6,
         false
     );
-    // Capacités: {Expend}: {Gain 5 combat} {Wild Ally}: Draw a card.
+    // Capacités: {Expend}: {Gain 5 combat} {SAUVAGE Ally}: Draw a card.
     cartes.push_back(cron);
     
     // Dire Wolf (5 gold, 5 defense, Guard)
     auto direWolf = std::make_shared<Champion>(
         "Dire Wolf",
-        Faction::WILD,
+        Faction::SAUVAGE,
         5,
         5,
         true
     );
-    // Capacités: {Expend}: {Gain 3 combat} {Wild Ally}: {Gain 4 combat}
+    // Capacités: {Expend}: {Gain 3 combat} {SAUVAGE Ally}: {Gain 4 combat}
     cartes.push_back(direWolf);
     
     // Elven Curse (3 gold) x2
     for(int i = 0; i < 2; i++) {
         auto elvenCurse = std::make_shared<Action>(
             "Elven Curse",
-            Faction::WILD,
+            Faction::SAUVAGE,
             3
         );
-        // Capacités: {Gain 6 combat} Target opponent discards a card. {Wild Ally}: {Gain 3 combat}
+        // Capacités: {Gain 6 combat} Target opponent discards a card. {SAUVAGE Ally}: {Gain 3 combat}
         cartes.push_back(elvenCurse);
     }
     
@@ -511,50 +511,50 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     for(int i = 0; i < 3; i++) {
         auto elvenGift = std::make_shared<Action>(
             "Elven Gift",
-            Faction::WILD,
+            Faction::SAUVAGE,
             2
         );
-        // Capacités: {Gain 2 gold} You may draw a card. If you do, discard a card. {Wild Ally}: {Gain 4 combat}
+        // Capacités: {Gain 2 gold} You may draw a card. If you do, discard a card. {SAUVAGE Ally}: {Gain 4 combat}
         cartes.push_back(elvenGift);
     }
     
     // Grak, Storm Giant (8 gold, 7 defense, Guard)
     auto grak = std::make_shared<Champion>(
         "Grak, Storm Giant",
-        Faction::WILD,
+        Faction::SAUVAGE,
         8,
         7,
         true
     );
-    // Capacités: {Expend}: {Gain 6 combat} You may draw a card. If you do, discard a card. {Wild Ally}: Draw a card, then discard a card.
+    // Capacités: {Expend}: {Gain 6 combat} You may draw a card. If you do, discard a card. {SAUVAGE Ally}: Draw a card, then discard a card.
     cartes.push_back(grak);
     
     // Nature's Bounty (4 gold)
     auto naturesBounty = std::make_shared<Action>(
         "Nature's Bounty",
-        Faction::WILD,
+        Faction::SAUVAGE,
         4
     );
-    // Capacités: {Gain 4 gold} {Wild Ally}: Target opponent discards a card. {Sacrifice}: {Gain 4 combat}
+    // Capacités: {Gain 4 gold} {SAUVAGE Ally}: Target opponent discards a card. {Sacrifice}: {Gain 4 combat}
     cartes.push_back(naturesBounty);
     
     // Orc Grunt (3 gold, 3 defense, Guard) x2
     for(int i = 0; i < 2; i++) {
         auto orcGrunt = std::make_shared<Champion>(
             "Orc Grunt",
-            Faction::WILD,
+            Faction::SAUVAGE,
             3,
             3,
             true
         );
-        // Capacités: {Expend}: {Gain 2 combat} {Wild Ally}: Draw a card.
+        // Capacités: {Expend}: {Gain 2 combat} {SAUVAGE Ally}: Draw a card.
         cartes.push_back(orcGrunt);
     }
     
     // Rampage (6 gold)
     auto rampage = std::make_shared<Action>(
         "Rampage",
-        Faction::WILD,
+        Faction::SAUVAGE,
         6
     );
     // Capacités: {Gain 6 combat} You may draw up to two cards, then discard that many cards.
@@ -563,7 +563,7 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     // Torgen Rocksplitter (7 gold, 7 defense, Guard)
     auto torgen = std::make_shared<Champion>(
         "Torgen Rocksplitter",
-        Faction::WILD,
+        Faction::SAUVAGE,
         7,
         7,
         true
@@ -575,17 +575,17 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     for(int i = 0; i < 3; i++) {
         auto spark = std::make_shared<Action>(
             "Spark",
-            Faction::WILD,
+            Faction::SAUVAGE,
             1
         );
-        // Capacités: {Gain 3 combat} Target opponent discards a card. {Wild Ally}: {Gain 2 combat}
+        // Capacités: {Gain 3 combat} Target opponent discards a card. {SAUVAGE Ally}: {Gain 2 combat}
         cartes.push_back(spark);
     }
     
     // Wolf Form (5 gold)
     auto wolfForm = std::make_shared<Action>(
         "Wolf Form",
-        Faction::WILD,
+        Faction::SAUVAGE,
         5
     );
     // Capacités: {Gain 8 combat} Target opponent discards a card. {Sacrifice}: Target opponent discards a card.
@@ -595,12 +595,12 @@ std::vector<std::shared_ptr<Game::Cartes::Carte>> CreerCartesBaseSet() {
     for(int i = 0; i < 2; i++) {
         auto wolfShaman = std::make_shared<Champion>(
             "Wolf Shaman",
-            Faction::WILD,
+            Faction::SAUVAGE,
             2,
             4,
             false
         );
-        // Capacités: {Expend}: {Gain 2 combat} +{1 combat} for each other {Wild} card you have in play.
+        // Capacités: {Expend}: {Gain 2 combat} +{1 combat} for each other {SAUVAGE} card you have in play.
         cartes.push_back(wolfShaman);
     }
     
