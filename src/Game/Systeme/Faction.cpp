@@ -2,15 +2,15 @@
 
 namespace Game::Systeme {
 
-Faction::Faction(FactionType type) : type(type) {}
+FactionClass::FactionClass(FactionType type) : type(type) {}
 
-const std::string& Faction::getNom() const {
+const std::string& FactionClass::getNom() const {
     static const std::string noms[] = {
-        "Guilde",
-        "Impérial",
-        "Nécros",
-        "Sauvage",
-        "Neutre"
+        "Imperial",
+        "Guild",
+        "Necros",
+        "Wild",
+        "Neutral"
     };
     return noms[static_cast<int>(type)];
 }

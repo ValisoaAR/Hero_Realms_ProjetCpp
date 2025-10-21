@@ -1,6 +1,7 @@
 #include "../../../include/Game/Zones/ZoneDeCarte.hpp"
 #include "../../../include/Game/Utils/SimpleRng.h"
 #include <algorithm>
+#include <random>
 
 namespace Game::Zones {
 
@@ -25,7 +26,9 @@ Cartes::Carte* ZoneDeCarte::retirerCarte(int position) {
 }
 
 void ZoneDeCarte::melanger() {
-    std::random_shuffle(cartes.begin(), cartes.end());
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(cartes.begin(), cartes.end(), g);
 }
 
 size_t ZoneDeCarte::getNbCartes() const {

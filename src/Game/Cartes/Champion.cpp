@@ -8,6 +8,11 @@ Champion::Champion(int id, const std::string& nom, int cout,
     : Carte(id, nom, cout, "champion", faction, description),
       pv(pv), active(false), garde(garde) {}
 
+// Constructeur simplifié pour CarteData
+Champion::Champion(const std::string& nom, Systeme::FactionType faction, int cout, int pv, bool garde)
+    : Carte(0, nom, cout, "champion", faction, ""),
+      pv(pv), active(false), garde(garde) {}
+
 void Champion::activer() {
     if (!active) {
         active = true;

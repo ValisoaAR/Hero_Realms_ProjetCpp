@@ -4,20 +4,21 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <random>
 #include <algorithm>
 #include <memory>
 #include "Game/Core/Joueur.hpp"
 #include "Game/Core/Partie.hpp"
 #include "Game/Cartes/CarteData.hpp"
+#include "Game/Cartes/Carte.hpp"
 
 using namespace HeroRealms;
-
-
-#include "Game/Cartes/Carte.hpp"
 using Game::Cartes::Carte;
+
+// Structure simple pour simuler un joueur en console
 struct JoueurConsole {
     int id;
-    int pv = 50;
+    int pv;
     std::vector<std::shared_ptr<Carte>> deck;
     std::vector<std::shared_ptr<Carte>> main;
     std::vector<std::shared_ptr<Carte>> defausse;
@@ -31,14 +32,19 @@ int main() {
     // Initialisation des joueurs
     JoueurConsole joueur1{1, 50, CreerDeckDepart()};
     JoueurConsole joueur2{2, 50, CreerDeckDepart()};
-    std::random_shuffle(joueur1.deck.begin(), joueur1.deck.end());
-    std::random_shuffle(joueur2.deck.begin(), joueur2.deck.end());
+    
+    // Initialisation du générateur aléatoire
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    
+    std::shuffle(joueur1.deck.begin(), joueur1.deck.end(), rng);
+    std::shuffle(joueur2.deck.begin(), joueur2.deck.end(), rng);
 
     // Initialisation du marché
     std::vector<std::shared_ptr<Carte>> piocheMarche = CreerCartesBaseSet();
     auto fireGems = CreerFireGems();
     piocheMarche.insert(piocheMarche.end(), fireGems.begin(), fireGems.end());
-    std::random_shuffle(piocheMarche.begin(), piocheMarche.end());
+    std::shuffle(piocheMarche.begin(), piocheMarche.end(), rng);
     std::vector<std::shared_ptr<Carte>> marche;
     for (int i = 0; i < 5 && !piocheMarche.empty(); ++i) {
         marche.push_back(piocheMarche.back());
@@ -62,7 +68,7 @@ int main() {
                 std::cout << "Deck vide, mélange la défausse." << std::endl;
                 joueur.deck = joueur.defausse;
                 joueur.defausse.clear();
-                std::random_shuffle(joueur.deck.begin(), joueur.deck.end());
+                std::shuffle(joueur.deck.begin(), joueur.deck.end(), rng);
                 while (joueur.main.size() < 5 && !joueur.deck.empty()) {
                     joueur.main.push_back(joueur.deck.back());
                     joueur.deck.pop_back();

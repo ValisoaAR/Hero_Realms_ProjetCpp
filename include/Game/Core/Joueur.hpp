@@ -22,6 +22,9 @@ namespace Game::Core {
         Systeme::Ressources ressources;
         Zones::ZoneDeCarte main;
         Zones::ZoneDeCarte deck;
+    public:
+        Zones::ZoneDeCarte& getDeck() { return deck; }
+        void setDeck(const Zones::ZoneDeCarte& d) { deck = d; }
         Zones::ZoneDeCarte defausse;
         Zones::ZoneDeCarte champions;
     };

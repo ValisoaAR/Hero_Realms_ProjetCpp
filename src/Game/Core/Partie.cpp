@@ -11,9 +11,10 @@ Partie::Partie() : phaseActuelle(Phase::DEBUT_TOUR) {}
 void Partie::demarrer() {
     // Distribuer les decks de départ aux joueurs
     // 8 pièces de or (0 coût) et 2 dagues courtes (1 coût, +1 combat)
-    for (auto& joueur : joueurs) {
-        joueur.deck = CreerDeckDepart();
-    }
+    // TODO: Implémenter l'initialisation du deck
+    // for (auto& joueur : joueurs) {
+    //     joueur.setDeck(HeroRealms::CreerDeckDepart());
+    // }
     
     // Mélanger les decks des joueurs
     // À implémenter

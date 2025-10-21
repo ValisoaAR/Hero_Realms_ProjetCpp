@@ -2,17 +2,20 @@
 #include <string>
 
 namespace Game::Systeme {
+
     enum class FactionType {
-        GUILDE,
         IMPERIAL,
+        GUILD,
         NECROS,
-        SAUVAGE,
-        NEUTRE
+        WILD,
+        NEUTRAL
     };
 
-    class Faction {
+    using Faction = FactionType;  // Alias pour compatibilité avec le code existant
+
+    class FactionClass {
     public:
-        Faction(FactionType type);
+        FactionClass(FactionType type);
         const std::string& getNom() const;
         FactionType getType() const { return type; }
         
