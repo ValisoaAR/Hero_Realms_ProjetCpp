@@ -7,3 +7,4 @@ Carte::Carte(int id, const std::string& nom, int cout, const std::string& type,
     : id(id), nom(nom), cout(cout), type(type), faction(faction), description(description) {}
 
 } // namespace Game::Cartes
+
