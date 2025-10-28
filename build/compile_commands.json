@@ -1,0 +1,104 @@
+[
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\main.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\main.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/main.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Cartes\\Action.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Cartes\\Action.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Cartes/Action.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Cartes/Action.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Cartes\\Carte.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Cartes\\Carte.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Cartes/Carte.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Cartes/Carte.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Cartes\\CarteData.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Cartes\\CarteData.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Cartes/CarteData.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Cartes/CarteData.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Cartes\\Champion.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Cartes\\Champion.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Cartes/Champion.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Cartes/Champion.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Cartes\\Objet.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Cartes\\Objet.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Cartes/Objet.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Cartes/Objet.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Core\\Joueur.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Core\\Joueur.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Core/Joueur.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Core\\Partie.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Core\\Partie.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Core/Partie.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Systeme\\Capacite.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Systeme\\Capacite.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Capacite.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Systeme\\Effet.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Systeme\\Effet.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Effet.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Systeme\\Effet_data.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Systeme\\Effet_data.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Effet_data.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Systeme\\Faction.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Systeme\\Faction.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Faction.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Systeme\\Ressources.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Systeme\\Ressources.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Ressources.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Utils\\SimpleRng.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Utils\\SimpleRng.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Utils/SimpleRng.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Zones\\Marche.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Zones\\Marche.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Zones/Marche.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Zones\\TablePartie.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Zones\\TablePartie.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Zones/TablePartie.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.obj"
+},
+{
+  "directory": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/HeroRealms.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\HeroRealms.dir\\src\\Game\\Zones\\ZoneDeCarte.cpp.obj -c C:\\ET4_Info\\Cpp\\Hero_Realms_ProjetCpp\\Hero_Realms_ProjetCpp\\src\\Game\\Zones\\ZoneDeCarte.cpp",
+  "file": "C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Zones/ZoneDeCarte.cpp",
+  "output": "CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.obj"
+}
+]

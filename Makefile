@@ -17,8 +17,12 @@ ifeq ($(strip $(SRCS)),)
 SRCS := $(wildcard src/*.cpp) $(wildcard src/*/*.cpp)
 endif
 
-# map src/.../*.cpp -> build/obj/.../*.o
-OBJS := $(patsubst src/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
+# Add main.cpp at root
+SRCS += main.cpp
+
+# map src/.../*.cpp -> build/obj/.../*.o, main.cpp -> build/obj/main.o
+OBJS := $(patsubst src/%.cpp,$(OBJ_DIR)/%.o,$(filter src/%,$(SRCS)))
+OBJS += $(OBJ_DIR)/main.o
 DEPS := $(OBJS:.o=.d)
 
 .PHONY: all clean run
@@ -27,22 +31,27 @@ all: $(TARGET)
 
 # link
 $(TARGET): $(OBJS) | $(BIN_DIR)
-    $(CXX) $(CXXFLAGS) -o $@ $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
 
 # compile (create parent dir if needed)
 $(OBJ_DIR)/%.o: src/%.cpp
-    mkdir -p $(dir $@)
-    $(CXX) $(CXXFLAGS) -c $< -o $@
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# compile main.cpp at root
+$(OBJ_DIR)/main.o: main.cpp
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # ensure bin dir exists
 $(BIN_DIR):
-    mkdir -p $(BIN_DIR)
+	mkdir -p $(BIN_DIR)
 
 # include generated dependency files (if any)
 -include $(DEPS)
 
 clean:
-    rm -rf $(BUILD_DIR) hero
+	rm -rf $(BUILD_DIR) hero
 
 run: $(TARGET)
-    $(TARGET)
+	$(TARGET)

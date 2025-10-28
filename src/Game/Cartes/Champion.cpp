@@ -14,14 +14,9 @@ Champion::Champion(const std::string& nom, Systeme::FactionType faction, int cou
       pv(pv), active(false), garde(garde) {}
 
 void Champion::activer() {
-    if (!active) {
-        active = true;
-        for (auto& effet : effets) {  // Enlever le const
-            if (effet.peutEtreActive()) {
-                effet.appliquer();
-            }
-        }
-    }
+    // Marquer le champion comme actif (utilisé ce tour)
+    active = true;
+    // Note: Les effets "expend" sont appliqués par GameController::activerChampion()
 }
 
 void Champion::desactiver() {

@@ -1,31 +1,74 @@
 #pragma once
+#include <map>
+#include <memory>
+#include <string>
 #include "../Zones/ZoneDeCarte.hpp"
 #include "../Systeme/Ressources.hpp"
+#include "../Systeme/Faction.hpp"
+#include "../Cartes/Champion.hpp"
 
 namespace Game::Core {
     class Joueur {
     public:
-        Joueur(int id, int pv = 50);
+        Joueur(const std::string& nom, int pv = 50);
 
-        int getId() const { return id; }
+        // Getters de base
+        std::string getNom() const { return nom; }
         int getPv() const { return pv; }
-        int getOr() const { return ressources.getOr(); }
-        int getCombat() const { return ressources.getCombat(); }
+        
+        // Ressources
+        const Systeme::Ressources& getRessources() const { return ressources; }
+        
+        // Zones de cartes (const)
+        const Zones::ZoneDeCarte& getMain() const { return main; }
+        const Zones::ZoneDeCarte& getDeck() const { return deck; }
+        const Zones::ZoneDeCarte& getDefausse() const { return defausse; }
+        
+        // Zones de cartes (mutables)
+        Zones::ZoneDeCarte& getMainMutable() { return main; }
+        Zones::ZoneDeCarte& getDeckMutable() { return deck; }
+        Zones::ZoneDeCarte& getDefausseMutable() { return defausse; }
+        
+        // Champions en jeu (const)
+        const std::vector<std::shared_ptr<Cartes::Champion>>& getChampionsEnJeu() const { return championsEnJeu; }
+        
+        // Factions jouées ce tour
+        const std::map<Systeme::FactionType, int>& getFactionsJouees() const { return factionsJouees; }
 
-        void modifierPv(int delta);
-        void modifierOr(int delta);
-        void modifierCombat(int delta);
+        // Gestion des PV
+        void ajouterPv(int delta);
+        void retirerPv(int delta);
+        
+        // Gestion de l'or
+        void ajouterOr(int delta);
+        void retirerOr(int delta);
+        
+        // Gestion du combat
+        void ajouterCombat(int delta);
+        void retirerCombat(int delta);
+        
+        // Gestion des champions
+        void ajouterChampion(std::shared_ptr<Cartes::Champion> champion);
+        void retirerChampion(int index);
+        
+        // Gestion des factions
+        void ajouterFactionJouee(Systeme::FactionType faction);
+        
+        // Réinitialisation du tour
+        void reinitialiserRessources();
 
     private:
-        int id;
+        std::string nom;
         int pv;
         Systeme::Ressources ressources;
         Zones::ZoneDeCarte main;
         Zones::ZoneDeCarte deck;
-    public:
-        Zones::ZoneDeCarte& getDeck() { return deck; }
-        void setDeck(const Zones::ZoneDeCarte& d) { deck = d; }
         Zones::ZoneDeCarte defausse;
-        Zones::ZoneDeCarte champions;
+        
+        // Champions actifs sur le terrain
+        std::vector<std::shared_ptr<Cartes::Champion>> championsEnJeu;
+        
+        // Factions jouées ce tour (pour les bonus alliés)
+        std::map<Systeme::FactionType, int> factionsJouees;
     };
 }

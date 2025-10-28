@@ -25,6 +25,5 @@ namespace Game::Cartes {
         int pv;
         bool active;
         bool garde;
-        std::vector<Systeme::Effet> effets;
     };
 }

@@ -1,41 +1,41 @@
+// ✅ FICHIER UTILISÉ - Gestion du marché
+
 #include "../../../include/Game/Zones/Marche.hpp"
+#include <algorithm>
 
 namespace Game::Zones {
 
 Marche::Marche() : ZoneDeCarte("marche") {}
 
-void Marche::rafraichir() {
+void Marche::initialiser(std::vector<std::shared_ptr<Cartes::Carte>>& pioche, std::mt19937& rng) {
+    // Mélanger la pioche
+    std::shuffle(pioche.begin(), pioche.end(), rng);
+    
+    // Piocher les 5 premières cartes
+    remplir(pioche);
+}
+
+void Marche::remplir(std::vector<std::shared_ptr<Cartes::Carte>>& pioche) {
+    while (cartes.size() < TAILLE_MARCHE && !pioche.empty()) {
+        cartes.push_back(pioche.back());
+        pioche.pop_back();
+    }
+}
+
+std::shared_ptr<Cartes::Carte> Marche::acheter(int position) {
+    return retirerCarte(position);
+}
+
+void Marche::rafraichir(std::vector<std::shared_ptr<Cartes::Carte>>& pioche, 
+                        std::vector<std::shared_ptr<Cartes::Carte>>& defausse) {
     // Défausser toutes les cartes du marché
     while (!cartes.empty()) {
-        // À implémenter: déplacer les cartes vers la défausse
+        defausse.push_back(cartes.back());
         cartes.pop_back();
     }
     
-    // Piocher de nouvelles cartes du deck du marché
-    // À implémenter
-}
-
-void Marche::acheterCarte(int position) {
-    if (position < 0 || position >= static_cast<int>(cartes.size())) {
-        return;
-    }
-    
-    // Vérifier si le joueur a assez d'or
-    // Ajouter la carte à la défausse du joueur
-    // À implémenter
-    
-    retirerCarte(position);
-}
-
-void Marche::defausserCarte(int position) {
-    if (position < 0 || position >= static_cast<int>(cartes.size())) {
-        return;
-    }
-    
-    // Déplacer la carte vers la défausse du marché
-    // À implémenter
-    
-    retirerCarte(position);
+    // Remplir avec de nouvelles cartes
+    remplir(pioche);
 }
 
 } // namespace Game::Zones

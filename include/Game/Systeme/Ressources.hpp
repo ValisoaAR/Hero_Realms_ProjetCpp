@@ -9,7 +9,9 @@ namespace Game::Systeme {
         int getCombat() const { return combat; }
         
         void ajouterOr(int montant);
+        void retirerOr(int montant);
         void ajouterCombat(int montant);
+        void retirerCombat(int montant);
         void reinitialiser();
         
     private:

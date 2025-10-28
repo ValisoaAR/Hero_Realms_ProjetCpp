@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "../Systeme/Faction.hpp"
 #include "../Systeme/Capacite.hpp"
+#include "../Systeme/Effet.hpp"
 
 namespace Game::Cartes {
     class Carte {
@@ -18,6 +20,9 @@ namespace Game::Cartes {
         const Systeme::Faction& getFaction() const { return faction; }
         const std::string& getDescription() const { return description; }
         
+        void ajouterEffet(const Systeme::Effet& effet) { effets.push_back(effet); }
+        const std::vector<Systeme::Effet>& getEffets() const { return effets; }
+        
     protected:
         int id;
         std::string nom;
@@ -25,5 +30,6 @@ namespace Game::Cartes {
         std::string type;
         Systeme::Faction faction;
         std::string description;
+        std::vector<Systeme::Effet> effets;
     };
 }

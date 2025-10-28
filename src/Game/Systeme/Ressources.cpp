@@ -10,8 +10,18 @@ void Ressources::ajouterOr(int montant) {
     if (or_val < 0) or_val = 0;
 }
 
+void Ressources::retirerOr(int montant) {
+    or_val -= montant;
+    if (or_val < 0) or_val = 0;
+}
+
 void Ressources::ajouterCombat(int montant) {
     combat += montant;
+    if (combat < 0) combat = 0;
+}
+
+void Ressources::retirerCombat(int montant) {
+    combat -= montant;
     if (combat < 0) combat = 0;
 }
 

@@ -13,10 +13,9 @@ namespace Game::Cartes {
         // Constructeur simplifié pour CarteData
         Objet(const std::string& nom, Systeme::FactionType faction, int cout);
               
-        const std::vector<Systeme::Effet>& getEffets() const { return effets; }
         void utiliser();
         
-    private:
-        std::vector<Systeme::Effet> effets;
+        // Note: getEffets() est hérité de Carte
+        // Note: effets est hérité de Carte (protected)
     };
 }

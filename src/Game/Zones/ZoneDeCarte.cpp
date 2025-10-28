@@ -1,5 +1,4 @@
 #include "../../../include/Game/Zones/ZoneDeCarte.hpp"
-#include "../../../include/Game/Utils/SimpleRng.h"
 #include <algorithm>
 #include <random>
 
@@ -7,32 +6,33 @@ namespace Game::Zones {
 
 ZoneDeCarte::ZoneDeCarte(const std::string& type) : type(type) {}
 
-void ZoneDeCarte::ajouterCarte(Cartes::Carte* carte, int position) {
-    if (position < 0 || position >= static_cast<int>(cartes.size())) {
+void ZoneDeCarte::ajouterCarte(std::shared_ptr<Cartes::Carte> carte) {
+    if (carte) {
         cartes.push_back(carte);
-    } else {
-        cartes.insert(cartes.begin() + position, carte);
     }
 }
 
-Cartes::Carte* ZoneDeCarte::retirerCarte(int position) {
+std::shared_ptr<Cartes::Carte> ZoneDeCarte::retirerCarte(int position) {
     if (position < 0 || position >= static_cast<int>(cartes.size())) {
         return nullptr;
     }
     
-    Cartes::Carte* carte = cartes[position];
+    auto carte = cartes[position];
     cartes.erase(cartes.begin() + position);
     return carte;
+}
+
+std::shared_ptr<Cartes::Carte> ZoneDeCarte::getCarte(int position) const {
+    if (position < 0 || position >= static_cast<int>(cartes.size())) {
+        return nullptr;
+    }
+    return cartes[position];
 }
 
 void ZoneDeCarte::melanger() {
     std::random_device rd;
     std::mt19937 g(rd());
     std::shuffle(cartes.begin(), cartes.end(), g);
-}
-
-size_t ZoneDeCarte::getNbCartes() const {
-    return cartes.size();
 }
 
 } // namespace Game::Zones
