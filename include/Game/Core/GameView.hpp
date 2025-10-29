@@ -45,6 +45,11 @@ namespace Game::Core {
         int demanderChoix(const std::string& question, int min, int max) const;
         bool demanderConfirmation(const std::string& question) const;
         
+        // God-Mode
+        void afficherMenuGodMode() const;
+        void afficherPiocheComplete(const std::vector<std::shared_ptr<Cartes::Carte>>& pioche) const;
+        void afficherGodModeActif(bool actif) const;
+        
     private:
         void afficherSeparateur() const;
         void afficherLigne(const std::string& texte) const;

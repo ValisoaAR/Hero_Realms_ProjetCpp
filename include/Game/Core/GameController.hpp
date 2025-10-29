@@ -65,6 +65,14 @@ namespace Game::Core {
         const Joueur& getJoueur(int idx) const { return (idx == 0) ? joueur1 : joueur2; }
         Joueur& getJoueurMutable(int idx) { return (idx == 0) ? joueur1 : joueur2; }
         const Zones::Marche& getMarche() const { return marche; }
+        const std::vector<std::shared_ptr<Cartes::Carte>>& getPiocheMarche() const { return piocheMarche; }
+        
+        // God-Mode
+        void activerGodMode(GameView& view, int joueurIdx);
+        void modifierPV(Joueur& joueur, int nouveauxPV);
+        void acheterDePioche(Joueur& joueur, int carteIdx);
+        bool isGodModeActif() const { return godModeActif; }
+        void toggleGodMode() { godModeActif = !godModeActif; }
         
     private:
         Joueur joueur1;
@@ -74,6 +82,7 @@ namespace Game::Core {
         std::mt19937 rng;
         int tourActuel;
         bool finie;
+        bool godModeActif;
     };
 
 } // namespace Game::Core

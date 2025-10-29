@@ -89,6 +89,7 @@ void GameView::afficherMenuPrincipal() const {
     std::cout << "  3. Attaquer (champions/joueur adverse)" << std::endl;
     std::cout << "  4. Activer un champion" << std::endl;
     std::cout << "  5. Fin du tour" << std::endl;
+    std::cout << "  6. [GOD-MODE] Triche" << std::endl;
     std::cout << "Choix: ";
 }
 
@@ -202,6 +203,48 @@ void GameView::afficherSeparateur() const {
 
 void GameView::afficherLigne(const std::string& texte) const {
     std::cout << texte << std::endl;
+}
+
+// ==================== GOD-MODE ====================
+
+void GameView::afficherMenuGodMode() const {
+    std::cout << "\n";
+    afficherSeparateur();
+    std::cout << "          [GOD-MODE] Menu Triche        " << std::endl;
+    afficherSeparateur();
+    std::cout << "  1. Modifier vos PV" << std::endl;
+    std::cout << "  2. Modifier les PV de l'adversaire" << std::endl;
+    std::cout << "  3. Acheter une carte de toute la pioche (directement dans la main)" << std::endl;
+    std::cout << "  4. Toggle God-Mode (ON/OFF)" << std::endl;
+    std::cout << "  0. Retour au jeu" << std::endl;
+    std::cout << "Choix: ";
+}
+
+void GameView::afficherPiocheComplete(const std::vector<std::shared_ptr<Cartes::Carte>>& pioche) const {
+    std::cout << "\n[Pioche complete du marche] (" << pioche.size() << " cartes):" << std::endl;
+    for (size_t i = 0; i < pioche.size(); ++i) {
+        auto carte = pioche[i];
+        std::cout << "  [" << (i+1) << "] " << carte->getNom() 
+                  << " (Cout: " << carte->getCout() << " or)";
+        
+        if (carte->getType() == "champion") {
+            auto champ = std::dynamic_pointer_cast<Cartes::Champion>(carte);
+            if (champ) {
+                std::cout << " [Champion " << champ->getPv() << "PV";
+                if (champ->estGarde()) std::cout << " GARDE";
+                std::cout << "]";
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
+void GameView::afficherGodModeActif(bool actif) const {
+    if (actif) {
+        std::cout << "\n[GOD-MODE] *** MODE TRICHE ACTIVE ***" << std::endl;
+    } else {
+        std::cout << "\n[GOD-MODE] Mode triche desactive." << std::endl;
+    }
 }
 
 } // namespace Game::Core

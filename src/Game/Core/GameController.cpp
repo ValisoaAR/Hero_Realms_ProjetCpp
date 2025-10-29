@@ -10,7 +10,7 @@ namespace Game::Core {
 
 // GameController
 GameController::GameController() 
-    : joueur1("Joueur 1"), joueur2("Joueur 2"), tourActuel(1), finie(false) {
+    : joueur1("Joueur 1"), joueur2("Joueur 2"), tourActuel(1), finie(false), godModeActif(false) {
     std::random_device rd;
     rng.seed(rd());
 }
@@ -201,6 +201,11 @@ void GameController::jouerTour(int joueurIdx, GameView& view) {
                 finTour = true;
                 this->finTour(joueur);  // Utiliser this-> pour distinguer de la variable
                 view.afficherInfo("Fin du tour.");
+                break;
+            }
+            
+            case 6: { // God-Mode
+                activerGodMode(view, joueurIdx);
                 break;
             }
             
@@ -840,6 +845,89 @@ void GameController::appliquerEffetAvecAdversaire(Joueur& joueur, Joueur& advers
     else {
         // Pour les autres effets, utiliser la méthode normale
         appliquerEffet(joueur, effet, carte);
+    }
+}
+
+// ==================== GOD-MODE ====================
+
+void GameController::activerGodMode(GameView& view, int joueurIdx) {
+    auto& joueur = getJoueurMutable(joueurIdx);
+    auto& adversaire = getJoueurMutable(1 - joueurIdx);
+    
+    view.afficherMenuGodMode();
+    
+    int choix;
+    std::cin >> choix;
+    
+    switch (choix) {
+        case 1: { // Modifier PV du joueur actuel
+            int nouveauxPV = view.demanderChoix("Nouveaux PV pour vous", 1, 999);
+            modifierPV(joueur, nouveauxPV);
+            view.afficherResultatAction("PV modifies!");
+            break;
+        }
+        
+        case 2: { // Modifier PV de l'adversaire
+            int nouveauxPV = view.demanderChoix("Nouveaux PV pour l'adversaire", 1, 999);
+            modifierPV(adversaire, nouveauxPV);
+            view.afficherResultatAction("PV de l'adversaire modifies!");
+            break;
+        }
+        
+        case 3: { // Acheter depuis toute la pioche
+            if (piocheMarche.empty()) {
+                view.afficherErreur("La pioche du marche est vide!");
+                break;
+            }
+            
+            std::cout << "\n";
+            view.afficherPiocheComplete(piocheMarche);
+            
+            int carteIdx = view.demanderChoix("Quelle carte acheter? (0 pour annuler)", 0, piocheMarche.size());
+            
+            if (carteIdx == 0) {
+                view.afficherInfo("Achat annule.");
+            } else if (carteIdx >= 1 && carteIdx <= (int)piocheMarche.size()) {
+                acheterDePioche(joueur, carteIdx - 1);
+                view.afficherResultatAction("Carte ajoutee directement a votre main!");
+            } else {
+                view.afficherErreur("Choix invalide.");
+            }
+            break;
+        }
+        
+        case 4: { // Toggle God-Mode
+            toggleGodMode();
+            view.afficherGodModeActif(godModeActif);
+            break;
+        }
+        
+        case 0: { // Retour
+            view.afficherInfo("Retour au jeu.");
+            break;
+        }
+        
+        default:
+            view.afficherErreur("Option invalide.");
+            break;
+    }
+}
+
+void GameController::modifierPV(Joueur& joueur, int nouveauxPV) {
+    joueur.setPv(nouveauxPV);
+}
+
+void GameController::acheterDePioche(Joueur& joueur, int carteIdx) {
+    if (carteIdx >= 0 && carteIdx < (int)piocheMarche.size()) {
+        auto carte = piocheMarche[carteIdx];
+        
+        // Retirer de la pioche
+        piocheMarche.erase(piocheMarche.begin() + carteIdx);
+        
+        // Ajouter directement à la main (au lieu de la défausse)
+        joueur.getMainMutable().ajouterCarte(carte);
+        
+        std::cout << "  -> Carte '" << carte->getNom() << "' ajoutee a votre main!" << std::endl;
     }
 }
 

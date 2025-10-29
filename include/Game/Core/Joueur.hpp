@@ -38,6 +38,7 @@ namespace Game::Core {
         // Gestion des PV
         void ajouterPv(int delta);
         void retirerPv(int delta);
+        void setPv(int nouveauxPv) { pv = nouveauxPv; }
         
         // Gestion de l'or
         void ajouterOr(int delta);
