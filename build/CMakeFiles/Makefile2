@@ -84,12 +84,12 @@ clean: CMakeFiles/HeroRealms.dir/clean
 CMakeFiles/HeroRealms.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 "Built target HeroRealms"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 "Built target HeroRealms"
 .PHONY : CMakeFiles/HeroRealms.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/HeroRealms.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/HeroRealms.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles 0
 .PHONY : CMakeFiles/HeroRealms.dir/rule
@@ -101,7 +101,7 @@ HeroRealms: CMakeFiles/HeroRealms.dir/rule
 # codegen rule for target.
 CMakeFiles/HeroRealms.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 "Finished codegen for target HeroRealms"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 "Finished codegen for target HeroRealms"
 .PHONY : CMakeFiles/HeroRealms.dir/codegen
 
 # clean rule for target.

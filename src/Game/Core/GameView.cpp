@@ -42,23 +42,54 @@ void GameView::afficherEtatJoueur(const Joueur& joueur) const {
               << " | Combat: " << std::setw(2) << joueur.getRessources().getCombat() << std::endl;
     
     auto main = joueur.getMain().getCartes();
-    std::cout << "| Main (" << main.size() << "): ";
+    std::cout << "| Main (" << main.size() << "):" << std::endl;
     for (size_t i = 0; i < main.size(); ++i) {
-        std::cout << "[" << (i+1) << "]" << main[i]->getNom() << " ";
+        std::cout << "|   [" << (i+1) << "] " << main[i]->getNom() 
+                  << " (Cout: " << main[i]->getCout() << ")" << std::endl;
+        afficherEffetsCarte(*main[i]);
     }
     
     auto champions = joueur.getChampionsEnJeu();
-    std::cout << "\n| Champions (" << champions.size() << "): ";
-    for (size_t i = 0; i < champions.size(); ++i) {
-        auto champ = champions[i];
-        std::cout << "[" << (i+1) << "]" << champ->getNom() << "(" << champ->getPv() << "PV";
-        if (champ->estGarde()) std::cout << ",GARDE";
-        if (champ->estActif()) std::cout << ",ACTIF";
-        std::cout << ") ";
+    if (!champions.empty()) {
+        std::cout << "| Champions en jeu (" << champions.size() << "):" << std::endl;
+        for (size_t i = 0; i < champions.size(); ++i) {
+            auto champ = champions[i];
+            std::cout << "|   [" << (i+1) << "] " << champ->getNom() 
+                      << " (" << champ->getPv() << "PV";
+            if (champ->estGarde()) std::cout << ",GARDE";
+            if (champ->estActif()) std::cout << ",ACTIF";
+            std::cout << ")" << std::endl;
+            afficherEffetsCarte(*champ);
+        }
     }
     
-    std::cout << "\n| Deck: " << joueur.getDeck().getCartes().size() 
+    std::cout << "| Deck: " << joueur.getDeck().getCartes().size() 
               << " | Defausse: " << joueur.getDefausse().getCartes().size() << std::endl;
+    std::cout << "+--------------------------------+" << std::endl;
+}
+
+void GameView::afficherEtatAdversaire(const Joueur& adversaire) const {
+    std::cout << "\n+--- " << adversaire.getNom() << " --------------------+" << std::endl;
+    std::cout << "| PV: " << std::setw(3) << adversaire.getPv() << std::endl;
+    std::cout << "| Cartes en main: " << adversaire.getMain().getCartes().size() << std::endl;
+    
+    auto champions = adversaire.getChampionsEnJeu();
+    if (!champions.empty()) {
+        std::cout << "| Champions en jeu (" << champions.size() << "):" << std::endl;
+        for (size_t i = 0; i < champions.size(); ++i) {
+            auto champ = champions[i];
+            std::cout << "|   [" << (i+1) << "] " << champ->getNom() 
+                      << " (" << champ->getPv() << "PV";
+            if (champ->estGarde()) std::cout << ",GARDE";
+            if (champ->estActif()) std::cout << ",ACTIF";
+            std::cout << ")" << std::endl;
+        }
+    } else {
+        std::cout << "| Aucun champion en jeu" << std::endl;
+    }
+    
+    std::cout << "| Deck: " << adversaire.getDeck().getCartes().size() 
+              << " | Defausse: " << adversaire.getDefausse().getCartes().size() << std::endl;
     std::cout << "+--------------------------------+" << std::endl;
 }
 
@@ -79,6 +110,7 @@ void GameView::afficherMarche(const Zones::Marche& marche) const {
             }
         }
         std::cout << std::endl;
+        afficherEffetsCarte(*carte);
     }
 }
 
@@ -119,6 +151,59 @@ void GameView::afficherEffet(const std::string& typeEffet, int valeur) const {
         std::cout << typeEffet << " (" << valeur << ")";
     }
     std::cout << std::endl;
+}
+
+void GameView::afficherEffetsCarte(const Cartes::Carte& carte) const {
+    const auto& effets = carte.getEffets();
+    
+    if (effets.empty()) {
+        return;
+    }
+    
+    for (const auto& effet : effets) {
+        std::cout << "      ";
+        
+        // Afficher le préfixe selon l'activation
+        if (effet.getActivation() == "ally") {
+            std::cout << "[ALLIE] ";
+        } else if (effet.getActivation() == "sacrifice") {
+            std::cout << "[SACRIFICE] ";
+        } else if (effet.getActivation() == "expend") {
+            std::cout << "[EXPEND] ";
+        }
+        
+        // Afficher l'effet principal
+        if (effet.getType() == "or") {
+            std::cout << "+" << effet.getValeur() << " Or";
+        } else if (effet.getType() == "combat") {
+            std::cout << "+" << effet.getValeur() << " Combat";
+        } else if (effet.getType() == "soin") {
+            std::cout << "+" << effet.getValeur() << " PV (soin)";
+        } else if (effet.getType() == "pioche") {
+            std::cout << "Pioche " << effet.getValeur() << " carte(s)";
+        } else if (effet.getType() == "sacrifice") {
+            std::cout << "Sacrifier une carte";
+        } else if (effet.getType() == "stun") {
+            std::cout << "Etourdir un champion";
+        } else if (effet.getType() == "prepare") {
+            std::cout << "Preparer un champion";
+        } else if (effet.getType() == "defausse_adversaire") {
+            std::cout << "Adversaire defausse " << effet.getValeur() << " carte(s)";
+        } else if (effet.getType() == "choix") {
+            std::cout << "Choix d'effet";
+        } else {
+            std::cout << effet.getType() << " (" << effet.getValeur() << ")";
+        }
+        
+        // Afficher la condition si présente
+        if (effet.getConditionType() == "ally") {
+            std::cout << " (si allie " << effet.getConditionValeur() << ")";
+        } else if (effet.getConditionType() == "per_champion") {
+            std::cout << " (par champion en jeu)";
+        }
+        
+        std::cout << std::endl;
+    }
 }
 
 void GameView::afficherAllieActive(Systeme::FactionType faction) const {
@@ -236,6 +321,7 @@ void GameView::afficherPiocheComplete(const std::vector<std::shared_ptr<Cartes::
             }
         }
         std::cout << std::endl;
+        afficherEffetsCarte(*carte);
     }
 }
 

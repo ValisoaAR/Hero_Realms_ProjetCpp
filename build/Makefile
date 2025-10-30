@@ -272,6 +272,54 @@ src/Game/Cartes/Objet.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Cartes/Objet.cpp.s
 .PHONY : src/Game/Cartes/Objet.cpp.s
 
+src/Game/Core/GameController.obj: src/Game/Core/GameController.cpp.obj
+.PHONY : src/Game/Core/GameController.obj
+
+# target to build an object file
+src/Game/Core/GameController.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj
+.PHONY : src/Game/Core/GameController.cpp.obj
+
+src/Game/Core/GameController.i: src/Game/Core/GameController.cpp.i
+.PHONY : src/Game/Core/GameController.i
+
+# target to preprocess a source file
+src/Game/Core/GameController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.i
+.PHONY : src/Game/Core/GameController.cpp.i
+
+src/Game/Core/GameController.s: src/Game/Core/GameController.cpp.s
+.PHONY : src/Game/Core/GameController.s
+
+# target to generate assembly for a file
+src/Game/Core/GameController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.s
+.PHONY : src/Game/Core/GameController.cpp.s
+
+src/Game/Core/GameView.obj: src/Game/Core/GameView.cpp.obj
+.PHONY : src/Game/Core/GameView.obj
+
+# target to build an object file
+src/Game/Core/GameView.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj
+.PHONY : src/Game/Core/GameView.cpp.obj
+
+src/Game/Core/GameView.i: src/Game/Core/GameView.cpp.i
+.PHONY : src/Game/Core/GameView.i
+
+# target to preprocess a source file
+src/Game/Core/GameView.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.i
+.PHONY : src/Game/Core/GameView.cpp.i
+
+src/Game/Core/GameView.s: src/Game/Core/GameView.cpp.s
+.PHONY : src/Game/Core/GameView.s
+
+# target to generate assembly for a file
+src/Game/Core/GameView.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.s
+.PHONY : src/Game/Core/GameView.cpp.s
+
 src/Game/Core/Joueur.obj: src/Game/Core/Joueur.cpp.obj
 .PHONY : src/Game/Core/Joueur.obj
 
@@ -295,30 +343,6 @@ src/Game/Core/Joueur.s: src/Game/Core/Joueur.cpp.s
 src/Game/Core/Joueur.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.s
 .PHONY : src/Game/Core/Joueur.cpp.s
-
-src/Game/Core/Partie.obj: src/Game/Core/Partie.cpp.obj
-.PHONY : src/Game/Core/Partie.obj
-
-# target to build an object file
-src/Game/Core/Partie.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj
-.PHONY : src/Game/Core/Partie.cpp.obj
-
-src/Game/Core/Partie.i: src/Game/Core/Partie.cpp.i
-.PHONY : src/Game/Core/Partie.i
-
-# target to preprocess a source file
-src/Game/Core/Partie.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.i
-.PHONY : src/Game/Core/Partie.cpp.i
-
-src/Game/Core/Partie.s: src/Game/Core/Partie.cpp.s
-.PHONY : src/Game/Core/Partie.s
-
-# target to generate assembly for a file
-src/Game/Core/Partie.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\HeroRealms.dir\build.make CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.s
-.PHONY : src/Game/Core/Partie.cpp.s
 
 src/Game/Systeme/Capacite.obj: src/Game/Systeme/Capacite.cpp.obj
 .PHONY : src/Game/Systeme/Capacite.obj
@@ -563,12 +587,15 @@ help:
 	@echo ... src/Game/Cartes/Objet.obj
 	@echo ... src/Game/Cartes/Objet.i
 	@echo ... src/Game/Cartes/Objet.s
+	@echo ... src/Game/Core/GameController.obj
+	@echo ... src/Game/Core/GameController.i
+	@echo ... src/Game/Core/GameController.s
+	@echo ... src/Game/Core/GameView.obj
+	@echo ... src/Game/Core/GameView.i
+	@echo ... src/Game/Core/GameView.s
 	@echo ... src/Game/Core/Joueur.obj
 	@echo ... src/Game/Core/Joueur.i
 	@echo ... src/Game/Core/Joueur.s
-	@echo ... src/Game/Core/Partie.obj
-	@echo ... src/Game/Core/Partie.i
-	@echo ... src/Game/Core/Partie.s
 	@echo ... src/Game/Systeme/Capacite.obj
 	@echo ... src/Game/Systeme/Capacite.i
 	@echo ... src/Game/Systeme/Capacite.s

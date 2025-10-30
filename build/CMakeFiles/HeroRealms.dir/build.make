@@ -161,11 +161,41 @@ CMakeFiles/HeroRealms.dir/src/Game/Cartes/Objet.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/HeroRealms.dir/src/Game/Cartes/Objet.cpp.s"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Cartes\Objet.cpp -o CMakeFiles\HeroRealms.dir\src\Game\Cartes\Objet.cpp.s
 
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj: CMakeFiles/HeroRealms.dir/flags.make
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Core/GameController.cpp
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Core\GameController.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Core\GameController.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\GameController.cpp
+
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.i"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\GameController.cpp > CMakeFiles\HeroRealms.dir\src\Game\Core\GameController.cpp.i
+
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.s"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\GameController.cpp -o CMakeFiles\HeroRealms.dir\src\Game\Core\GameController.cpp.s
+
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj: CMakeFiles/HeroRealms.dir/flags.make
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Core/GameView.cpp
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Core\GameView.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Core\GameView.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\GameView.cpp
+
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.i"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\GameView.cpp > CMakeFiles\HeroRealms.dir\src\Game\Core\GameView.cpp.i
+
+CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.s"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\GameView.cpp -o CMakeFiles\HeroRealms.dir\src\Game\Core\GameView.cpp.s
+
 CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj: CMakeFiles/HeroRealms.dir/flags.make
 CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Core/Joueur.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Core\Joueur.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Core\Joueur.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\Joueur.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.i: cmake_force
@@ -176,26 +206,11 @@ CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.s"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\Joueur.cpp -o CMakeFiles\HeroRealms.dir\src\Game\Core\Joueur.cpp.s
 
-CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj: CMakeFiles/HeroRealms.dir/flags.make
-CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
-CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Core/Partie.cpp
-CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Core\Partie.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Core\Partie.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\Partie.cpp
-
-CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\Partie.cpp > CMakeFiles\HeroRealms.dir\src\Game\Core\Partie.cpp.i
-
-CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Core\Partie.cpp -o CMakeFiles\HeroRealms.dir\src\Game\Core\Partie.cpp.s
-
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj: CMakeFiles/HeroRealms.dir/flags.make
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Capacite.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Systeme\Capacite.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Systeme\Capacite.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Systeme\Capacite.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.i: cmake_force
@@ -210,7 +225,7 @@ CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj: CMakeFiles/HeroRealms.
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Effet.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Systeme\Effet.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Systeme\Effet.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Systeme\Effet.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.i: cmake_force
@@ -225,7 +240,7 @@ CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj: CMakeFiles/HeroRe
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Effet_data.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Systeme\Effet_data.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Systeme\Effet_data.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Systeme\Effet_data.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.i: cmake_force
@@ -240,7 +255,7 @@ CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.obj: CMakeFiles/HeroRealm
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Faction.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Systeme\Faction.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Systeme\Faction.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Systeme\Faction.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Faction.cpp.i: cmake_force
@@ -255,7 +270,7 @@ CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.obj: CMakeFiles/HeroRe
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Systeme/Ressources.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Systeme\Ressources.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Systeme\Ressources.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Systeme\Ressources.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Systeme/Ressources.cpp.i: cmake_force
@@ -270,7 +285,7 @@ CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.obj: CMakeFiles/HeroRealm
 CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Utils/SimpleRng.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Utils\SimpleRng.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Utils\SimpleRng.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Utils\SimpleRng.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Utils/SimpleRng.cpp.i: cmake_force
@@ -285,7 +300,7 @@ CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.obj: CMakeFiles/HeroRealms.d
 CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Zones/Marche.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Zones\Marche.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Zones\Marche.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Zones\Marche.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Zones/Marche.cpp.i: cmake_force
@@ -300,7 +315,7 @@ CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.obj: CMakeFiles/HeroRea
 CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Zones/TablePartie.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Zones\TablePartie.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Zones\TablePartie.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Zones\TablePartie.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Zones/TablePartie.cpp.i: cmake_force
@@ -315,7 +330,7 @@ CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.obj: CMakeFiles/HeroRea
 CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.obj: CMakeFiles/HeroRealms.dir/includes_CXX.rsp
 CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.obj: C:/ET4_Info/Cpp/Hero_Realms_ProjetCpp/Hero_Realms_ProjetCpp/src/Game/Zones/ZoneDeCarte.cpp
 CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.obj: CMakeFiles/HeroRealms.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.obj -MF CMakeFiles\HeroRealms.dir\src\Game\Zones\ZoneDeCarte.cpp.obj.d -o CMakeFiles\HeroRealms.dir\src\Game\Zones\ZoneDeCarte.cpp.obj -c C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\src\Game\Zones\ZoneDeCarte.cpp
 
 CMakeFiles/HeroRealms.dir/src/Game/Zones/ZoneDeCarte.cpp.i: cmake_force
@@ -334,8 +349,9 @@ HeroRealms_OBJECTS = \
 "CMakeFiles/HeroRealms.dir/src/Game/Cartes/CarteData.cpp.obj" \
 "CMakeFiles/HeroRealms.dir/src/Game/Cartes/Champion.cpp.obj" \
 "CMakeFiles/HeroRealms.dir/src/Game/Cartes/Objet.cpp.obj" \
+"CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj" \
+"CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj" \
 "CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj" \
-"CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj" \
 "CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj" \
 "CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj" \
 "CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj" \
@@ -355,8 +371,9 @@ HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Cartes/Carte.cpp.obj
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Cartes/CarteData.cpp.obj
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Cartes/Champion.cpp.obj
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Cartes/Objet.cpp.obj
+HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Core/GameController.cpp.obj
+HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Core/GameView.cpp.obj
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Core/Joueur.cpp.obj
-HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Core/Partie.cpp.obj
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Systeme/Capacite.cpp.obj
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet.cpp.obj
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/src/Game/Systeme/Effet_data.cpp.obj
@@ -370,7 +387,7 @@ HeroRealms.exe: CMakeFiles/HeroRealms.dir/build.make
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/linkLibs.rsp
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/objects1.rsp
 HeroRealms.exe: CMakeFiles/HeroRealms.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable HeroRealms.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\ET4_Info\Cpp\Hero_Realms_ProjetCpp\Hero_Realms_ProjetCpp\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable HeroRealms.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\HeroRealms.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

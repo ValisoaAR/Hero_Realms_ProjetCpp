@@ -56,7 +56,12 @@ void GameController::jouerTour(int joueurIdx, GameView& view) {
     bool finTour = false;
     while (!finTour && !partieFinie()) {
         // Affichage de l'état actuel à chaque itération
+        std::cout << "\n=== ADVERSAIRE ===" << std::endl;
+        view.afficherEtatAdversaire(adversaire);
+        
+        std::cout << "\n=== VOUS ===" << std::endl;
         view.afficherEtatJoueur(joueur);
+        
         view.afficherMarche(marche);
         view.afficherMenuPrincipal();
         

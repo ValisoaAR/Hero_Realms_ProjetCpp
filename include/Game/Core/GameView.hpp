@@ -23,6 +23,7 @@ namespace Game::Core {
         
         // Affichage de l'état du jeu
         void afficherEtatJoueur(const Joueur& joueur) const;
+        void afficherEtatAdversaire(const Joueur& adversaire) const;
         void afficherMarche(const Zones::Marche& marche) const;
         
         // Affichage des actions
@@ -35,6 +36,7 @@ namespace Game::Core {
         void afficherEffet(const std::string& typeEffet, int valeur) const;
         void afficherAllieActive(Systeme::FactionType faction) const;
         void afficherChampionEnJeu(const std::string& nom, bool garde) const;
+        void afficherEffetsCarte(const Cartes::Carte& carte) const;
         
         // Affichage de combat
         void afficherAttaque(const std::string& cible, int degats) const;
