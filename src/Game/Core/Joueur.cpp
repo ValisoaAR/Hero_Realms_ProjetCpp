@@ -1,4 +1,4 @@
-// ✅ FICHIER UTILISÉ - Classe Joueur pour le jeu
+// Classe Joueur pour le jeu
 
 #include "../../../include/Game/Core/Joueur.hpp"
 
@@ -12,7 +12,6 @@ Joueur::Joueur(const std::string& nom, int pv)
 
 void Joueur::ajouterPv(int delta) {
     pv += delta;
-    // Pas de limite de PV maximum (variante sans plafond)
 }
 
 void Joueur::retirerPv(int delta) {

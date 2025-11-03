@@ -1,5 +1,3 @@
-// ✅ FICHIER UTILISÉ - Gestion du marché
-
 #include "../../../include/Game/Zones/Marche.hpp"
 #include <algorithm>
 
