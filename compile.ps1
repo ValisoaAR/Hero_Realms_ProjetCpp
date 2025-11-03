@@ -23,6 +23,7 @@ $sources = @(
     "src/Game/Core/Joueur.cpp",
     "src/Game/Core/GameController.cpp",
     "src/Game/Core/GameView.cpp",
+    "src/Game/Core/IAJoueur.cpp",
     "src/Game/Utils/SimpleRng.cpp",
     "main.cpp"
 )

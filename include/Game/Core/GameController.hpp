@@ -74,6 +74,10 @@ namespace Game::Core {
         bool isGodModeActif() const { return godModeActif; }
         void toggleGodMode() { godModeActif = !godModeActif; }
         
+        // IA
+        void setJoueur2EstIA(bool estIA) { joueur2EstIA = estIA; }
+        bool isJoueur2IA() const { return joueur2EstIA; }
+        
     private:
         Joueur joueur1;
         Joueur joueur2;
@@ -83,6 +87,7 @@ namespace Game::Core {
         int tourActuel;
         bool finie;
         bool godModeActif;
+        bool joueur2EstIA;
     };
 
 } // namespace Game::Core

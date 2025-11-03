@@ -1,5 +1,6 @@
 #include "../../../include/Game/Core/GameController.hpp"
 #include "../../../include/Game/Core/GameView.hpp"
+#include "../../../include/Game/Core/IAJoueur.hpp"
 #include "../../../include/Game/Cartes/CarteData.hpp"
 #include "../../../include/Game/Cartes/Action.hpp"
 #include "../../../include/Game/Cartes/Objet.hpp"
@@ -10,7 +11,7 @@ namespace Game::Core {
 
 // GameController
 GameController::GameController() 
-    : joueur1("Joueur 1"), joueur2("Joueur 2"), tourActuel(1), finie(false), godModeActif(false) {
+    : joueur1("Joueur 1"), joueur2("IA"), tourActuel(1), finie(false), godModeActif(false), joueur2EstIA(true) {
     std::random_device rd;
     rng.seed(rd());
 }
@@ -52,7 +53,15 @@ void GameController::jouerTour(int joueurIdx, GameView& view) {
     // Début du tour
     debutTour(joueur);
     
-    // Phase d'actions
+    // Si c'est l'IA, elle joue automatiquement
+    if (joueurIdx == 1 && joueur2EstIA) {
+        IAJoueur ia;
+        ia.jouerTour(*this, view, joueurIdx, rng);
+        finTour(joueur);
+        return;
+    }
+    
+    // Phase d'actions pour un joueur humain
     bool finTour = false;
     while (!finTour && !partieFinie()) {
         // Affichage de l'état actuel à chaque itération
