@@ -19,13 +19,13 @@ namespace Game::Core {
         std::this_thread::sleep_for(std::chrono::milliseconds(800));
         
         // Phase 1 : Jouer toutes les cartes de la main
-        jouerToutesLesCartes(controller, joueur);
+        jouerToutesLesCartes(controller, joueur, adversaire);
         
         // Phase 2 : Acheter des cartes
         acheterCartes(controller, view, joueur, controller.getMarche(), rng);
         
         // Phase 3 : Activer tous les champions
-        activerTousLesChampions(controller, joueur);
+        activerTousLesChampions(controller, joueur, adversaire);
         
         // Phase 4 : Attaquer
         attaquerAdversaire(controller, joueur, adversaire, rng);
@@ -34,7 +34,7 @@ namespace Game::Core {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
-    void IAJoueur::jouerToutesLesCartes(GameController& controller, Joueur& joueur) {
+    void IAJoueur::jouerToutesLesCartes(GameController& controller, Joueur& joueur, Joueur& adversaire) {
         // Joue toutes les cartes une par une (indices vont de 0 à taille-1)
         while (joueur.getMain().getNbCartes() > 0) {
             auto& main = joueur.getMain();
@@ -43,7 +43,7 @@ namespace Game::Core {
             std::cout << "L'IA joue : " << carte->getNom() << "\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             
-            controller.jouerCarte(joueur, 0); // Joue toujours l'index 0
+            controller.jouerCarte(joueur, 0, &adversaire, true); // true = c'est l'IA
         }
     }
 
@@ -92,14 +92,14 @@ namespace Game::Core {
         }
     }
 
-    void IAJoueur::activerTousLesChampions(GameController& controller, Joueur& joueur) {
+    void IAJoueur::activerTousLesChampions(GameController& controller, Joueur& joueur, Joueur& adversaire) {
         // Active tous les champions en jeu
         for (size_t i = 0; i < joueur.getChampionsEnJeu().size(); ++i) {
             auto champion = joueur.getChampionsEnJeu()[i];
             std::cout << "L'IA active le champion : " << champion->getNom() << "\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             
-            controller.activerChampion(joueur, static_cast<int>(i));
+            controller.activerChampion(joueur, static_cast<int>(i), &adversaire, true); // true = c'est l'IA
         }
     }
 

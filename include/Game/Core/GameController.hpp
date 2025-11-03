@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include <random>
+#include <string>
 #include "../Cartes/Carte.hpp"
 #include "../Cartes/Champion.hpp"
 #include "../Systeme/Faction.hpp"
@@ -33,10 +34,11 @@ namespace Game::Core {
         void finTour(Joueur& joueur);
         
         // Actions du joueur
-        bool jouerCarte(Joueur& joueur, int carteIdx);
+        bool jouerCarte(Joueur& joueur, int carteIdx, Joueur* adversaire = nullptr, bool estIA = false);
         bool acheterCarte(Joueur& joueur, int marcheIdx);
         bool attaquer(Joueur& attaquant, Joueur& defenseur, int cibleIdx);
-        bool activerChampion(Joueur& joueur, int championIdx);
+        bool activerChampion(Joueur& joueur, int championIdx, Joueur* adversaire = nullptr, bool estIA = false);
+        bool sacrifierCarte(Joueur& joueur, int carteIdx);
         
         // Gestion des cartes
         void piocherCartes(Joueur& joueur, int nombre);
@@ -44,13 +46,13 @@ namespace Game::Core {
         void defausserChampions(Joueur& joueur);
         
         // Application des effets
-        void appliquerEffetsCarte(Joueur& joueur, std::shared_ptr<Cartes::Carte> carte, bool estAllie);
-        void appliquerEffet(Joueur& joueur, const Systeme::Effet& effet, std::shared_ptr<Cartes::Carte> carte);
-        void appliquerEffetAvecAdversaire(Joueur& joueur, Joueur& adversaire, const Systeme::Effet& effet, std::shared_ptr<Cartes::Carte> carte);
+        void appliquerEffetsCarte(Joueur& joueur, std::shared_ptr<Cartes::Carte> carte, bool estAllie, Joueur* adversaire = nullptr, bool estIA = false);
+        void appliquerEffet(Joueur& joueur, const Systeme::Effet& effet, std::shared_ptr<Cartes::Carte> carte, bool estIA = false);
+        void appliquerEffetAvecAdversaire(Joueur& joueur, Joueur& adversaire, const Systeme::Effet& effet, std::shared_ptr<Cartes::Carte> carte, bool adversaireEstIA = false);
         
         // Effets complexes
-        void gererEffetChoix(Joueur& joueur, std::shared_ptr<Cartes::Carte> carte);
-        void gererDefausseAdversaire(Joueur& adversaire, int nombre);
+        void gererEffetChoix(Joueur& joueur, std::shared_ptr<Cartes::Carte> carte, bool estIA = false);
+        void gererDefausseAdversaire(Joueur& adversaire, int nombre, bool adversaireEstIA = false);
         void gererStunChampion(Joueur& adversaire);
         int compterChampionsEnJeu(const Joueur& joueur) const;
         int compterGardesEnJeu(const Joueur& joueur) const;
@@ -77,6 +79,7 @@ namespace Game::Core {
         // IA
         void setJoueur2EstIA(bool estIA) { joueur2EstIA = estIA; }
         bool isJoueur2IA() const { return joueur2EstIA; }
+        void setNomJoueur2(const std::string& nom);
         
     private:
         Joueur joueur1;

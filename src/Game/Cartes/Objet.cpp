@@ -16,8 +16,6 @@ Objet::Objet(const std::string& nom, Systeme::FactionType faction, int cout)
     : Carte(0, nom, cout, "objet", faction, "") {}
 
 void Objet::utiliser() {
-    // Les effets sont maintenant appliqués par GameController
-    // Cette méthode peut rester vide ou afficher un message
 }
 
 } // namespace Game::Cartes

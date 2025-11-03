@@ -30,10 +30,10 @@ namespace Game::Core {
         
     private:
         // Phases du tour
-        void jouerToutesLesCartes(GameController& controller, Joueur& joueur);
+        void jouerToutesLesCartes(GameController& controller, Joueur& joueur, Joueur& adversaire);
         void acheterCartes(GameController& controller, GameView& view, Joueur& joueur, const Zones::Marche& marche, std::mt19937& rng);
         void attaquerAdversaire(GameController& controller, Joueur& joueur, Joueur& adversaire, std::mt19937& rng);
-        void activerTousLesChampions(GameController& controller, Joueur& joueur);
+        void activerTousLesChampions(GameController& controller, Joueur& joueur, Joueur& adversaire);
         
         // Aide à la décision
         int choisirMeilleureCarteAcheter(const Zones::Marche& marche, int orDisponible, std::mt19937& rng);

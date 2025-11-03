@@ -12,8 +12,7 @@ Joueur::Joueur(const std::string& nom, int pv)
 
 void Joueur::ajouterPv(int delta) {
     pv += delta;
-    // Limiter à 50 PV maximum (règle standard Hero Realms)
-    if (pv > 50) pv = 50;
+    // Pas de limite de PV maximum (variante sans plafond)
 }
 
 void Joueur::retirerPv(int delta) {

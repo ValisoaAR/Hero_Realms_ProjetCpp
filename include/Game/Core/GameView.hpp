@@ -18,7 +18,7 @@ namespace Game::Core {
         // Affichage général
         void afficherTitre() const;
         void afficherDebut() const;
-        void afficherFinPartie(int vainqueur, int pvRestants) const;
+        void afficherFinPartie(const std::string& nomVainqueur, int pvRestants) const;
         void afficherDebutTour(int tour, int joueurId) const;
         
         // Affichage de l'état du jeu

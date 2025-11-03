@@ -6,12 +6,14 @@
 #include "../../../include/Game/Cartes/Objet.hpp"
 #include <algorithm>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 namespace Game::Core {
 
 // GameController
 GameController::GameController() 
-    : joueur1("Joueur 1"), joueur2("IA"), tourActuel(1), finie(false), godModeActif(false), joueur2EstIA(true) {
+    : joueur1("Joueur 1"), joueur2("Joueur 2"), tourActuel(1), finie(false), godModeActif(false), joueur2EstIA(false) {
     std::random_device rd;
     rng.seed(rd());
 }
@@ -40,8 +42,9 @@ void GameController::jouerPartie(GameView& view) {
     
     // Affichage de la fin de partie
     int vainqueur = getVainqueur();
-    int pvRestants = getJoueur(vainqueur).getPv();
-    view.afficherFinPartie(vainqueur + 1, pvRestants);
+    const Joueur& joueurVainqueur = getJoueur(vainqueur);
+    int pvRestants = joueurVainqueur.getPv();
+    view.afficherFinPartie(joueurVainqueur.getNom(), pvRestants);
 }
 
 void GameController::jouerTour(int joueurIdx, GameView& view) {
@@ -95,7 +98,7 @@ void GameController::jouerTour(int joueurIdx, GameView& view) {
                     if (carteIdx == 0) {
                         continuerJouer = false;
                     } else if (carteIdx >= 1 && carteIdx <= (int)joueur.getMain().getCartes().size()) {
-                        if (jouerCarte(joueur, carteIdx - 1)) {
+                        if (jouerCarte(joueur, carteIdx - 1, &adversaire)) {
                             view.afficherResultatAction("Carte jouee avec succes!");
                         } else {
                             view.afficherErreur("Impossible de jouer cette carte.");
@@ -200,7 +203,7 @@ void GameController::jouerTour(int joueurIdx, GameView& view) {
                 if (champIdx == 0) {
                     view.afficherInfo("Action annulee.");
                 } else if (champIdx >= 1 && champIdx <= (int)joueur.getChampionsEnJeu().size()) {
-                    if (activerChampion(joueur, champIdx - 1)) {
+                    if (activerChampion(joueur, champIdx - 1, &adversaire)) {
                         view.afficherResultatAction("Champion active!");
                     } else {
                         view.afficherErreur("Impossible d'activer ce champion (deja actif?).");
@@ -211,14 +214,61 @@ void GameController::jouerTour(int joueurIdx, GameView& view) {
                 break;
             }
             
-            case 5: { // Fin du tour
+            case 5: { // Sacrifier une carte
+                if (joueur.getMain().getCartes().empty()) {
+                    view.afficherErreur("Votre main est vide!");
+                    break;
+                }
+                
+                // Afficher les cartes qui ont un effet sacrifice
+                std::cout << "\n=== Cartes avec effet SACRIFICE ===" << std::endl;
+                auto main = joueur.getMain().getCartes();
+                std::vector<int> cartesAvecSacrifice;
+                
+                for (size_t i = 0; i < main.size(); ++i) {
+                    bool hasEffetSacrifice = false;
+                    for (const auto& effet : main[i]->getEffets()) {
+                        if (effet.getActivation() == "sacrifice") {
+                            hasEffetSacrifice = true;
+                            break;
+                        }
+                    }
+                    if (hasEffetSacrifice) {
+                        cartesAvecSacrifice.push_back(i);
+                        std::cout << "  [" << (i+1) << "] " << main[i]->getNom() << std::endl;
+                        view.afficherEffetsCarte(*main[i]);
+                    }
+                }
+                
+                if (cartesAvecSacrifice.empty()) {
+                    view.afficherErreur("Aucune carte avec effet sacrifice dans votre main!");
+                    break;
+                }
+                
+                int carteIdx = view.demanderChoix("Quelle carte sacrifier? (0 pour annuler)", 0, main.size());
+                
+                if (carteIdx == 0) {
+                    view.afficherInfo("Action annulee.");
+                } else if (carteIdx >= 1 && carteIdx <= (int)main.size()) {
+                    if (sacrifierCarte(joueur, carteIdx - 1)) {
+                        view.afficherResultatAction("Carte sacrifiee!");
+                    } else {
+                        view.afficherErreur("Impossible de sacrifier cette carte (pas d'effet sacrifice?).");
+                    }
+                } else {
+                    view.afficherErreur("Choix invalide.");
+                }
+                break;
+            }
+            
+            case 6: { // Fin du tour
                 finTour = true;
                 this->finTour(joueur);  // Utiliser this-> pour distinguer de la variable
                 view.afficherInfo("Fin du tour.");
                 break;
             }
             
-            case 6: { // God-Mode
+            case 7: { // God-Mode
                 activerGodMode(view, joueurIdx);
                 break;
             }
@@ -230,6 +280,11 @@ void GameController::jouerTour(int joueurIdx, GameView& view) {
     }
 }
 
+void GameController::setNomJoueur2(const std::string& nom) {
+    // Créer un nouveau joueur avec le nom spécifié
+    joueur2 = Joueur(nom);
+}
+
 void GameController::initialiserPartie() {
     // Initialiser les decks des joueurs
     initialiserJoueur(joueur1);
@@ -237,6 +292,10 @@ void GameController::initialiserPartie() {
     
     // Initialiser le marché
     initialiserMarche();
+    
+    // Piocher 5 cartes pour chaque joueur au début de la partie
+    piocherCartes(joueur1, 5);
+    piocherCartes(joueur2, 5);
     
     tourActuel = 1;
     finie = false;
@@ -264,12 +323,6 @@ void GameController::initialiserMarche() {
 }
 
 void GameController::debutTour(Joueur& joueur) {
-    // Piocher jusqu'à 5 cartes
-    int cartesAPiocher = 5 - joueur.getMain().getCartes().size();
-    if (cartesAPiocher > 0) {
-        piocherCartes(joueur, cartesAPiocher);
-    }
-    
     // Réinitialiser les ressources
     joueur.reinitialiserRessources();
 }
@@ -280,6 +333,9 @@ void GameController::finTour(Joueur& joueur) {
     
     // Défausser les champions
     defausserChampions(joueur);
+    
+    // Piocher 5 cartes pour le prochain tour
+    piocherCartes(joueur, 5);
 }
 
 void GameController::piocherCartes(Joueur& joueur, int nombre) {
@@ -312,7 +368,7 @@ void GameController::piocherCartes(Joueur& joueur, int nombre) {
     }
 }
 
-bool GameController::jouerCarte(Joueur& joueur, int carteIdx) {
+bool GameController::jouerCarte(Joueur& joueur, int carteIdx, Joueur* adversaire, bool estIA) {
     if (carteIdx < 0 || carteIdx >= (int)joueur.getMain().getCartes().size()) {
         return false;
     }
@@ -325,7 +381,7 @@ bool GameController::jouerCarte(Joueur& joueur, int carteIdx) {
     bool estAllie = verifierAllie(joueur, faction);
     
     // Appliquer les effets de la carte
-    appliquerEffetsCarte(joueur, carte, estAllie);
+    appliquerEffetsCarte(joueur, carte, estAllie, adversaire, estIA);
     
     // Si c'est un champion, le mettre en jeu
     if (carte->getType() == "champion") {
@@ -344,24 +400,42 @@ bool GameController::jouerCarte(Joueur& joueur, int carteIdx) {
     return true;
 }
 
-void GameController::appliquerEffetsCarte(Joueur& joueur, std::shared_ptr<Cartes::Carte> carte, bool estAllie) {
+void GameController::appliquerEffetsCarte(Joueur& joueur, std::shared_ptr<Cartes::Carte> carte, bool estAllie, Joueur* adversaire, bool estIA) {
     const auto& effets = carte->getEffets();
+    
+    // Déterminer si l'adversaire est IA
+    bool adversaireEstIA = false;
+    if (adversaire != nullptr) {
+        // Si l'adversaire est joueur2 et que joueur2EstIA est vrai
+        adversaireEstIA = (adversaire == &joueur2 && joueur2EstIA);
+    }
     
     for (const auto& effet : effets) {
         // Vérifier l'activation
         std::string activation = effet.getActivation();
+        std::string type = effet.getType();
         
         if (activation == "immediate") {
-            appliquerEffet(joueur, effet, carte);
+            // Si c'est un effet qui nécessite l'adversaire
+            if ((type == "defausse_adversaire" || type == "stun") && adversaire != nullptr) {
+                appliquerEffetAvecAdversaire(joueur, *adversaire, effet, carte, adversaireEstIA);
+            } else {
+                appliquerEffet(joueur, effet, carte, estIA);
+            }
         }
         else if (activation == "ally" && estAllie) {
-            appliquerEffet(joueur, effet, carte);
+            // Si c'est un effet qui nécessite l'adversaire
+            if ((type == "defausse_adversaire" || type == "stun") && adversaire != nullptr) {
+                appliquerEffetAvecAdversaire(joueur, *adversaire, effet, carte, adversaireEstIA);
+            } else {
+                appliquerEffet(joueur, effet, carte, estIA);
+            }
         }
         // expend et sacrifice sont gérés ailleurs
     }
 }
 
-void GameController::appliquerEffet(Joueur& joueur, const Systeme::Effet& effet, std::shared_ptr<Cartes::Carte> carte) {
+void GameController::appliquerEffet(Joueur& joueur, const Systeme::Effet& effet, std::shared_ptr<Cartes::Carte> carte, bool estIA) {
     std::string type = effet.getType();
     int valeur = effet.getValeur();
     std::string conditionValeur = effet.getConditionValeur();
@@ -379,7 +453,7 @@ void GameController::appliquerEffet(Joueur& joueur, const Systeme::Effet& effet,
         piocherCartes(joueur, valeur);
     }
     else if (type == "choix") {
-        gererEffetChoix(joueur, carte);
+        gererEffetChoix(joueur, carte, estIA);
     }
     else if (type == "sacrifice") {
         // Effet de sacrifice : demander quelle carte sacrifier
@@ -432,9 +506,8 @@ void GameController::appliquerEffet(Joueur& joueur, const Systeme::Effet& effet,
     }
     else if (type == "defausse_adversaire") {
         // Effet : l'adversaire défausse des cartes
-        // Nécessite l'adversaire en paramètre (non disponible ici)
-        std::cout << "  -> L'adversaire doit défausser " << valeur << " carte(s)" << std::endl;
-        std::cout << "     (À implémenter avec accès à l'adversaire)" << std::endl;
+        // Cet effet est géré par appliquerEffetAvecAdversaire
+        std::cout << "  -> Effet de défausse adversaire (nécessite appliquerEffetAvecAdversaire)" << std::endl;
     }
     
     // Gestion des effets avec conditions spéciales
@@ -473,73 +546,106 @@ void GameController::appliquerEffet(Joueur& joueur, const Systeme::Effet& effet,
     }
 }
 
-void GameController::gererEffetChoix(Joueur& joueur, std::shared_ptr<Cartes::Carte> carte) {
+void GameController::gererEffetChoix(Joueur& joueur, std::shared_ptr<Cartes::Carte> carte, bool estIA) {
     // Effets spécifiques par carte nécessitant un choix
     std::string nom = carte->getNom();
     
     if (nom == "Darian, War Mage") {
         // Choix: +3 combat OU +4 soin
-        std::cout << "\n[" << nom << "] Choisissez:" << std::endl;
-        std::cout << "  1) +3 Combat" << std::endl;
-        std::cout << "  2) +4 Soin" << std::endl;
-        std::cout << "Choix: ";
         int choix;
-        std::cin >> choix;
+        if (estIA) {
+            // L'IA préfère le combat si elle peut tuer, sinon le soin si elle est blessée
+            if (joueur.getPv() < 30) {
+                choix = 2; // Soin
+            } else {
+                choix = 1; // Combat
+            }
+            std::cout << "  -> L'IA choisit : " << (choix == 1 ? "+3 Combat" : "+4 Soin") << std::endl;
+        } else {
+            std::cout << "\n[" << nom << "] Choisissez un effet:" << std::endl;
+            std::cout << "  1) +3 Combat" << std::endl;
+            std::cout << "  2) +4 Soin" << std::endl;
+            std::cout << "Choix (1-2): ";
+            std::cin >> choix;
+        }
         if (choix == 1) {
             joueur.ajouterCombat(3);
-            std::cout << "  -> +3 Combat" << std::endl;
+            if (!estIA) std::cout << "  -> +3 Combat" << std::endl;
         } else {
             joueur.ajouterPv(4);
-            std::cout << "  -> +4 Soin" << std::endl;
+            if (!estIA) std::cout << "  -> +4 Soin" << std::endl;
         }
     }
     else if (nom == "Street Thug") {
         // Choix: +1 or OU +2 combat
-        std::cout << "\n[" << nom << "] Choisissez:" << std::endl;
-        std::cout << "  1) +1 Or" << std::endl;
-        std::cout << "  2) +2 Combat" << std::endl;
-        std::cout << "Choix: ";
         int choix;
-        std::cin >> choix;
+        if (estIA) {
+            // L'IA préfère le combat (plus de valeur)
+            choix = 2;
+            std::cout << "  -> L'IA choisit : +2 Combat" << std::endl;
+        } else {
+            std::cout << "\n[" << nom << "] Choisissez un effet:" << std::endl;
+            std::cout << "  1) +1 Or" << std::endl;
+            std::cout << "  2) +2 Combat" << std::endl;
+            std::cout << "Choix (1-2): ";
+            std::cin >> choix;
+        }
         if (choix == 1) {
             joueur.ajouterOr(1);
-            std::cout << "  -> +1 Or" << std::endl;
+            if (!estIA) std::cout << "  -> +1 Or" << std::endl;
         } else {
             joueur.ajouterCombat(2);
-            std::cout << "  -> +2 Combat" << std::endl;
+            if (!estIA) std::cout << "  -> +2 Combat" << std::endl;
         }
     }
     else if (nom == "Cult Priest") {
         // Choix: +1 or OU +1 combat
-        std::cout << "\n[" << nom << "] Choisissez:" << std::endl;
-        std::cout << "  1) +1 Or" << std::endl;
-        std::cout << "  2) +1 Combat" << std::endl;
-        std::cout << "Choix: ";
         int choix;
-        std::cin >> choix;
+        if (estIA) {
+            // L'IA préfère le combat
+            choix = 2;
+            std::cout << "  -> L'IA choisit : +1 Combat" << std::endl;
+        } else {
+            std::cout << "\n[" << nom << "] Choisissez un effet:" << std::endl;
+            std::cout << "  1) +1 Or" << std::endl;
+            std::cout << "  2) +1 Combat" << std::endl;
+            std::cout << "Choix (1-2): ";
+            std::cin >> choix;
+        }
         if (choix == 1) {
             joueur.ajouterOr(1);
-            std::cout << "  -> +1 Or" << std::endl;
+            if (!estIA) std::cout << "  -> +1 Or" << std::endl;
         } else {
             joueur.ajouterCombat(1);
-            std::cout << "  -> +1 Combat" << std::endl;
+            if (!estIA) std::cout << "  -> +1 Combat" << std::endl;
         }
     }
     else if (nom == "Tithe Priest") {
         // Choix: +1 or OU +1 soin par champion
         int nbChampions = compterChampionsEnJeu(joueur);
-        std::cout << "\n[" << nom << "] Choisissez:" << std::endl;
-        std::cout << "  1) +1 Or" << std::endl;
-        std::cout << "  2) +" << nbChampions << " Soin (1 par champion)" << std::endl;
-        std::cout << "Choix: ";
         int choix;
-        std::cin >> choix;
+        if (estIA) {
+            // L'IA choisit le soin si elle a plusieurs champions et est blessée
+            if (nbChampions >= 2 && joueur.getPv() < 40) {
+                choix = 2;
+                std::cout << "  -> L'IA choisit : +" << nbChampions << " Soin" << std::endl;
+            } else {
+                choix = 1;
+                std::cout << "  -> L'IA choisit : +1 Or" << std::endl;
+            }
+        } else {
+            std::cout << "\n[" << nom << "] Choisissez un effet:" << std::endl;
+            std::cout << "  1) +1 Or" << std::endl;
+            std::cout << "  2) +" << nbChampions << " Soin (1 par champion en jeu)" << std::endl;
+            std::cout << "Choix (1-2): ";
+            std::cin >> choix;
+        }
         if (choix == 1) {
             joueur.ajouterOr(1);
-            std::cout << "  -> +1 Or" << std::endl;
+            if (!estIA) std::cout << "  -> +1 Or" << std::endl;
         } else {
             joueur.ajouterPv(nbChampions);
-            std::cout << "  -> +" << nbChampions << " Soin" << std::endl;
+            if (!estIA) std::cout << "  -> +" << nbChampions << " Soin" << std::endl;
         }
     }
     else if (nom == "Master Weaver") {
@@ -668,15 +774,27 @@ bool GameController::acheterCarte(Joueur& joueur, int marcheIdx) {
     return false;
 }
 
-bool GameController::activerChampion(Joueur& joueur, int championIdx) {
+bool GameController::activerChampion(Joueur& joueur, int championIdx, Joueur* adversaire, bool estIA) {
     if (championIdx < 0 || championIdx >= (int)joueur.getChampionsEnJeu().size()) {
         return false;
     }
     
     auto champ = joueur.getChampionsEnJeu()[championIdx];
     
+    // Vérifier si le champion est déjà actif
+    if (champ->estActif()) {
+        std::cout << "  -> Ce champion a déjà été activé ce tour!" << std::endl;
+        return false;
+    }
+    
     // Activer le champion (applique les effets "expend")
     champ->activer();
+    
+    // Déterminer si l'adversaire est IA
+    bool adversaireEstIA = false;
+    if (adversaire != nullptr) {
+        adversaireEstIA = (adversaire == &joueur2 && joueur2EstIA);
+    }
     
     // Appliquer les effets "expend"
     for (const auto& effet : champ->getEffets()) {
@@ -684,13 +802,74 @@ bool GameController::activerChampion(Joueur& joueur, int championIdx) {
             // Vérifier si c'est un effet ally
             if (effet.getConditionType() == "ally") {
                 if (verifierAllie(joueur, champ->getFaction())) {
-                    appliquerEffet(joueur, effet, champ);
+                    // Vérifier si l'effet nécessite un adversaire
+                    if (effet.getType() == "defausse_adversaire" || effet.getType() == "stun") {
+                        if (adversaire != nullptr) {
+                            appliquerEffetAvecAdversaire(joueur, *adversaire, effet, champ, adversaireEstIA);
+                        }
+                    } else {
+                        appliquerEffet(joueur, effet, champ, estIA);
+                    }
                 }
             } else {
-                appliquerEffet(joueur, effet, champ);
+                // Vérifier si l'effet nécessite un adversaire
+                if (effet.getType() == "defausse_adversaire" || effet.getType() == "stun") {
+                    if (adversaire != nullptr) {
+                        appliquerEffetAvecAdversaire(joueur, *adversaire, effet, champ, adversaireEstIA);
+                    }
+                } else {
+                    appliquerEffet(joueur, effet, champ, estIA);
+                }
             }
         }
     }
+    
+    return true;
+}
+
+bool GameController::sacrifierCarte(Joueur& joueur, int carteIdx) {
+    auto& main = joueur.getMainMutable();
+    
+    if (carteIdx < 0 || carteIdx >= (int)main.getCartes().size()) {
+        return false;
+    }
+    
+    auto carte = main.getCartes()[carteIdx];
+    
+    // Vérifier si la carte a des effets "sacrifice"
+    bool hasEffetSacrifice = false;
+    for (const auto& effet : carte->getEffets()) {
+        if (effet.getActivation() == "sacrifice") {
+            hasEffetSacrifice = true;
+            break;
+        }
+    }
+    
+    if (!hasEffetSacrifice) {
+        std::cout << "  -> Cette carte n'a pas d'effet sacrifice!" << std::endl;
+        return false;
+    }
+    
+    // Retirer la carte de la main
+    main.retirerCarte(carteIdx);
+    
+    // Appliquer les effets "sacrifice" de la carte
+    std::cout << "  -> Sacrifice de " << carte->getNom() << std::endl;
+    for (const auto& effet : carte->getEffets()) {
+        if (effet.getActivation() == "sacrifice") {
+            // Vérifier si c'est un effet ally
+            if (effet.getConditionType() == "ally") {
+                if (verifierAllie(joueur, carte->getFaction())) {
+                    appliquerEffet(joueur, effet, carte);
+                }
+            } else {
+                appliquerEffet(joueur, effet, carte);
+            }
+        }
+    }
+    
+    // Mettre la carte dans la défausse
+    joueur.getDefausseMutable().ajouterCarte(carte);
     
     return true;
 }
@@ -790,33 +969,63 @@ int GameController::getVainqueur() const {
     return 0;
 }
 
-void GameController::gererDefausseAdversaire(Joueur& adversaire, int nombre) {
+void GameController::gererDefausseAdversaire(Joueur& adversaire, int nombre, bool adversaireEstIA) {
     if (adversaire.getMain().getCartes().empty()) {
         std::cout << "  -> L'adversaire n'a pas de cartes en main" << std::endl;
         return;
     }
     
     int cartesADefausser = std::min(nombre, (int)adversaire.getMain().getCartes().size());
-    std::cout << "\n[Adversaire] Vous devez défausser " << cartesADefausser << " carte(s):" << std::endl;
     
-    for (int i = 0; i < cartesADefausser; ++i) {
-        auto main = adversaire.getMain().getCartes();
-        if (main.empty()) break;
+    if (adversaireEstIA) {
+        // L'IA défausse automatiquement les cartes les moins chères
+        std::cout << "\n[Défausse Adversaire] L'IA doit défausser " << cartesADefausser << " carte(s)" << std::endl;
         
-        std::cout << "\nCartes en main:" << std::endl;
-        for (size_t j = 0; j < main.size(); ++j) {
-            std::cout << "  [" << (j+1) << "] " << main[j]->getNom() << std::endl;
-        }
-        std::cout << "Quelle carte défausser? ";
-        int choix;
-        std::cin >> choix;
-        
-        if (choix > 0 && choix <= (int)main.size()) {
-            auto carte = main[choix-1];
+        for (int i = 0; i < cartesADefausser; ++i) {
+            auto main = adversaire.getMain().getCartes();
+            if (main.empty()) break;
+            
+            // Trouver la carte la moins chère (l'IA garde les meilleures)
+            int idxMoinsChere = 0;
+            int coutMin = main[0]->getCout();
+            for (size_t j = 1; j < main.size(); ++j) {
+                if (main[j]->getCout() < coutMin) {
+                    coutMin = main[j]->getCout();
+                    idxMoinsChere = j;
+                }
+            }
+            
+            auto carte = main[idxMoinsChere];
             adversaire.getDefausseMutable().ajouterCarte(carte);
-            adversaire.getMainMutable().retirerCarte(choix-1);
-            std::cout << "  -> " << carte->getNom() << " défaussé" << std::endl;
+            adversaire.getMainMutable().retirerCarte(idxMoinsChere);
+            std::cout << "  -> L'IA défausse : " << carte->getNom() << " (Cout: " << carte->getCout() << " or)" << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(400));
         }
+    } else {
+        // Le joueur humain choisit les cartes à défausser
+        std::cout << "\n[Defausse Forcee] Vous devez defausser " << cartesADefausser << " carte(s):" << std::endl;
+        
+        for (int i = 0; i < cartesADefausser; ++i) {
+            auto main = adversaire.getMain().getCartes();
+            if (main.empty()) break;
+            
+            std::cout << "\nCartes en main (" << (i+1) << "/" << cartesADefausser << "):" << std::endl;
+            for (size_t j = 0; j < main.size(); ++j) {
+                std::cout << "  [" << (j+1) << "] " << main[j]->getNom() 
+                         << " (Cout: " << main[j]->getCout() << " or)" << std::endl;
+            }
+            std::cout << "Quelle carte defausser? (1-" << main.size() << "): ";
+            int choix;
+            std::cin >> choix;
+            
+            if (choix > 0 && choix <= (int)main.size()) {
+                auto carte = main[choix-1];
+                adversaire.getDefausseMutable().ajouterCarte(carte);
+                adversaire.getMainMutable().retirerCarte(choix-1);
+                std::cout << "  -> Vous defaussez : " << carte->getNom() << std::endl;
+            }
+        }
+        std::cout << "[OK] Defausse terminee!" << std::endl;
     }
 }
 
@@ -846,12 +1055,13 @@ void GameController::gererStunChampion(Joueur& adversaire) {
 
 void GameController::appliquerEffetAvecAdversaire(Joueur& joueur, Joueur& adversaire, 
                                                    const Systeme::Effet& effet, 
-                                                   std::shared_ptr<Cartes::Carte> carte) {
+                                                   std::shared_ptr<Cartes::Carte> carte,
+                                                   bool adversaireEstIA) {
     std::string type = effet.getType();
     int valeur = effet.getValeur();
     
     if (type == "defausse_adversaire") {
-        gererDefausseAdversaire(adversaire, valeur);
+        gererDefausseAdversaire(adversaire, valeur, adversaireEstIA);
     }
     else if (type == "stun") {
         gererStunChampion(adversaire);
