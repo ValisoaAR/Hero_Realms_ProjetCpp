@@ -50,18 +50,25 @@ namespace Game::Core {
     void IAJoueur::acheterCartes(GameController& controller, GameView& view, 
                                   Joueur& joueur, const Zones::Marche& marche, std::mt19937& rng) {
         // Achète des cartes tant qu'il y a de l'or
-        while (joueur.getRessources().getOr() > 0 && marche.getNbCartes() > 0) {
+        while (joueur.getRessources().getOr() > 0) {
             int idxCarte = choisirMeilleureCarteAcheter(marche, joueur.getRessources().getOr(), rng);
             
             if (idxCarte == -1) {
-                break; // Aucune carte achetable
+                // Si aucune carte du marché n'est achetable, essayer d'acheter une Fire Gem
+                if (joueur.getRessources().getOr() >= 2 && controller.getZoneFireGem().aDesFireGems()) {
+                    std::cout << "L'IA achete : Fire Gem (cout: 2)\n";
+                    std::this_thread::sleep_for(std::chrono::milliseconds(600));
+                    controller.acheterFireGem(joueur);
+                } else {
+                    break; // Aucune carte achetable et pas assez d'or pour Fire Gem
+                }
+            } else {
+                auto carte = marche.getCarte(idxCarte);
+                std::cout << "L'IA achete : " << carte->getNom() << " (cout: " << carte->getCout() << ")\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(600));
+                
+                controller.acheterCarte(joueur, idxCarte);
             }
-            
-            auto carte = marche.getCarte(idxCarte);
-            std::cout << "L'IA achete : " << carte->getNom() << " (cout: " << carte->getCout() << ")\n";
-            std::this_thread::sleep_for(std::chrono::milliseconds(600));
-            
-            controller.acheterCarte(joueur, idxCarte);
         }
     }
 

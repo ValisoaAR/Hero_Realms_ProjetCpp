@@ -111,25 +111,45 @@ void GameController::jouerTour(int joueurIdx, GameView& view) {
             }
             
             case 2: { // Acheter une carte
-                if (marche.getCartes().empty()) {
-                    view.afficherErreur("Le marche est vide!");
-                    break;
-                }
+                // Afficher le menu d'achat avec le nombre de Fire Gems restantes
+                view.afficherMenuAchat(joueur, zoneFireGem.getNbCartes());
                 
-                // Afficher le marché avant de demander l'achat
-                std::cout << "\n";
-                view.afficherMarche(marche);
+                int choixAchat;
+                std::cin >> choixAchat;
                 
-                int carteIdx = view.demanderChoix("Quelle carte acheter? (0 pour annuler)", 0, marche.getCartes().size());
-                
-                if (carteIdx == 0) {
-                    view.afficherInfo("Achat annule.");
-                } else if (carteIdx >= 1 && carteIdx <= (int)marche.getCartes().size()) {
-                    if (acheterCarte(joueur, carteIdx - 1)) {
-                        view.afficherResultatAction("Carte achetee avec succes!");
-                    } else {
-                        view.afficherErreur("Impossible d'acheter cette carte (pas assez d'or?).");
+                if (choixAchat == 1) {
+                    // Acheter depuis le marché
+                    if (marche.getCartes().empty()) {
+                        view.afficherErreur("Le marche est vide!");
+                        break;
                     }
+                    
+                    // Afficher le marché avec l'or disponible
+                    std::cout << "\n";
+                    view.afficherMarcheAvecOr(marche, joueur);
+                    
+                    int carteIdx = view.demanderChoix("Quelle carte acheter? (0 pour annuler)", 0, marche.getCartes().size());
+                    
+                    if (carteIdx == 0) {
+                        view.afficherInfo("Achat annule.");
+                    } else if (carteIdx >= 1 && carteIdx <= (int)marche.getCartes().size()) {
+                        if (acheterCarte(joueur, carteIdx - 1)) {
+                            view.afficherResultatAction("Carte achetee avec succes!");
+                        } else {
+                            view.afficherErreur("Impossible d'acheter cette carte (pas assez d'or?).");
+                        }
+                    } else {
+                        view.afficherErreur("Choix invalide.");
+                    }
+                } else if (choixAchat == 2) {
+                    // Acheter une Fire Gem
+                    if (acheterFireGem(joueur)) {
+                        view.afficherResultatAction("Fire Gem achetee avec succes!");
+                    } else {
+                        view.afficherErreur("Impossible d'acheter une Fire Gem (pas assez d'or ou plus disponible).");
+                    }
+                } else if (choixAchat == 0) {
+                    view.afficherInfo("Achat annule.");
                 } else {
                     view.afficherErreur("Choix invalide.");
                 }
@@ -313,13 +333,14 @@ void GameController::initialiserJoueur(Joueur& joueur) {
 }
 
 void GameController::initialiserMarche() {
-    // Créer la pioche du marché
+    // Créer la pioche du marché (sans les Fire Gems)
     piocheMarche = HeroRealms::CreerCartesBaseSet();
-    auto fireGems = HeroRealms::CreerFireGems();
-    piocheMarche.insert(piocheMarche.end(), fireGems.begin(), fireGems.end());
     
     // Initialiser le marché avec la pioche
     marche.initialiser(piocheMarche, rng);
+    
+    // Initialiser la zone Fire Gem séparément
+    zoneFireGem.initialiser();
 }
 
 void GameController::debutTour(Joueur& joueur) {
@@ -768,6 +789,30 @@ bool GameController::acheterCarte(Joueur& joueur, int marcheIdx) {
         
         // Remplir le marché
         marche.remplir(piocheMarche);
+        return true;
+    }
+    
+    return false;
+}
+
+bool GameController::acheterFireGem(Joueur& joueur) {
+    const int COUT_FIRE_GEM = 2;
+    
+    // Vérifier si le joueur a assez d'or
+    if (joueur.getRessources().getOr() < COUT_FIRE_GEM) {
+        return false;
+    }
+    
+    // Vérifier s'il reste des Fire Gems disponibles
+    if (!zoneFireGem.aDesFireGems()) {
+        return false;
+    }
+    
+    // Acheter la Fire Gem
+    auto fireGem = zoneFireGem.acheterFireGem();
+    if (fireGem) {
+        joueur.retirerOr(COUT_FIRE_GEM);
+        joueur.getDefausseMutable().ajouterCarte(fireGem);
         return true;
     }
     

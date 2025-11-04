@@ -8,6 +8,7 @@
 #include "../Systeme/Faction.hpp"
 #include "../Systeme/Effet.hpp"
 #include "../Zones/Marche.hpp"
+#include "../Zones/ZoneFireGem.hpp"
 #include "Joueur.hpp"
 
 namespace Game::Core {
@@ -36,6 +37,7 @@ namespace Game::Core {
         // Actions du joueur
         bool jouerCarte(Joueur& joueur, int carteIdx, Joueur* adversaire = nullptr, bool estIA = false);
         bool acheterCarte(Joueur& joueur, int marcheIdx);
+        bool acheterFireGem(Joueur& joueur);
         bool attaquer(Joueur& attaquant, Joueur& defenseur, int cibleIdx);
         bool activerChampion(Joueur& joueur, int championIdx, Joueur* adversaire = nullptr, bool estIA = false);
         bool sacrifierCarte(Joueur& joueur, int carteIdx);
@@ -67,6 +69,7 @@ namespace Game::Core {
         const Joueur& getJoueur(int idx) const { return (idx == 0) ? joueur1 : joueur2; }
         Joueur& getJoueurMutable(int idx) { return (idx == 0) ? joueur1 : joueur2; }
         const Zones::Marche& getMarche() const { return marche; }
+        Zones::ZoneFireGem& getZoneFireGem() { return zoneFireGem; }
         const std::vector<std::shared_ptr<Cartes::Carte>>& getPiocheMarche() const { return piocheMarche; }
         
         // God-Mode
@@ -85,6 +88,7 @@ namespace Game::Core {
         Joueur joueur1;
         Joueur joueur2;
         Zones::Marche marche;
+        Zones::ZoneFireGem zoneFireGem;
         std::vector<std::shared_ptr<Cartes::Carte>> piocheMarche;
         std::mt19937 rng;
         int tourActuel;

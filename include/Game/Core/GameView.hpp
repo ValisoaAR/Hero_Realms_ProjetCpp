@@ -25,9 +25,11 @@ namespace Game::Core {
         void afficherEtatJoueur(const Joueur& joueur) const;
         void afficherEtatAdversaire(const Joueur& adversaire) const;
         void afficherMarche(const Zones::Marche& marche) const;
+        void afficherMarcheAvecOr(const Zones::Marche& marche, const Joueur& joueur) const;
         
         // Affichage des actions
         void afficherMenuPrincipal() const;
+        void afficherMenuAchat(const Joueur& joueur, int nbFireGemsRestantes) const;
         void afficherResultatAction(const std::string& message) const;
         void afficherErreur(const std::string& message) const;
         void afficherInfo(const std::string& message) const;

@@ -156,15 +156,29 @@ void GameView::afficherMarche(const Zones::Marche& marche) const {
     }
 }
 
+void GameView::afficherMarcheAvecOr(const Zones::Marche& marche, const Joueur& joueur) const {
+    afficherMarche(marche);
+    std::cout << "\n" << OR << "Or disponible: " << joueur.getRessources().getOr() << " gold" << RESET << std::endl;
+}
+
 void GameView::afficherMenuPrincipal() const {
     std::cout << "\n[Actions] Que voulez-vous faire?" << std::endl;
     std::cout << "  1. Jouer carte(s) de votre main" << std::endl;
-    std::cout << "  2. Acheter une carte du marche" << std::endl;
+    std::cout << "  2. Acheter une carte" << std::endl;
     std::cout << "  3. Attaquer (champions/joueur adverse)" << std::endl;
     std::cout << "  4. Activer un champion" << std::endl;
     std::cout << "  5. Sacrifier une carte pour son effet" << std::endl;
     std::cout << "  6. Fin du tour" << std::endl;
     std::cout << "  7. [GOD-MODE] Triche" << std::endl;
+    std::cout << "Choix: ";
+}
+
+void GameView::afficherMenuAchat(const Joueur& joueur, int nbFireGemsRestantes) const {
+    std::cout << "\n" << MARCHE << "=== MENU ACHAT ===" << RESET << std::endl;
+    std::cout << "  1. Acheter depuis le marche" << std::endl;
+    std::cout << "  2. Acheter une Fire Gem (2 gold) - " << ROUGE << nbFireGemsRestantes << " restantes" << RESET << std::endl;
+    std::cout << "  0. Annuler" << std::endl;
+    std::cout << "\n" << OR << "Or disponible: " << joueur.getRessources().getOr() << " gold" << RESET << std::endl;
     std::cout << "Choix: ";
 }
 

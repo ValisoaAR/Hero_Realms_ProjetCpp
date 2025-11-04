@@ -6,7 +6,11 @@ TablePartie::TablePartie()
     : nb_gemmes(0),
       marche(),
       deck_marche("deck_marche"),
-      zone_sacrifice("sacrifice") {}
+      zone_sacrifice("sacrifice"),
+      zoneFireGem() {
+    // Initialiser la zone Fire Gem
+    zoneFireGem.initialiser();
+}
 
 void TablePartie::modifierNbGemmes(int delta) {
     nb_gemmes += delta;

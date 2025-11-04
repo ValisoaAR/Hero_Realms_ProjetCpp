@@ -1,6 +1,7 @@
 #pragma once
 #include "ZoneDeCarte.hpp"
 #include "Marche.hpp"
+#include "ZoneFireGem.hpp"
 
 namespace Game::Zones {
     class TablePartie {
@@ -13,11 +14,13 @@ namespace Game::Zones {
         Marche& getMarche() { return marche; }
         ZoneDeCarte& getDeckMarche() { return deck_marche; }
         ZoneDeCarte& getZoneSacrifice() { return zone_sacrifice; }
+        ZoneFireGem& getZoneFireGem() { return zoneFireGem; }
         
     private:
         int nb_gemmes;
         Marche marche;
         ZoneDeCarte deck_marche;
         ZoneDeCarte zone_sacrifice;
+        ZoneFireGem zoneFireGem;
     };
 }
